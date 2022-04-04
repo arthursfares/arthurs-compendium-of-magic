@@ -1,6 +1,6 @@
+import 'package:arthurs_compendium_of_magic/screens/login_screen.dart';
+import 'package:arthurs_compendium_of_magic/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
-
-import 'screens/login_screen.dart';
 
 void main() {
   runApp(
@@ -10,6 +10,7 @@ void main() {
       initialRoute: 'login',
       routes: {
         'login': (context) => const LoginScreen(),
+        'signup': (context) => const SignupScreen(),
       },
     )
   );
