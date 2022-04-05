@@ -187,6 +187,7 @@ class SignupScreen extends StatelessWidget {
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = () {
                                           print('login');
+                                          Navigator.pushNamed(context, 'login');
                                         },
                                       style: const TextStyle(
                                           color: Color(0xffE15FED)),
