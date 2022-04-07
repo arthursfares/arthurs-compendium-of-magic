@@ -25,8 +25,8 @@ class LoginScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 60.0, vertical: 80.0),
+                padding: const EdgeInsets.only(
+                    left: 60.0, right: 60.0, top: 80.0, bottom: 60.0),
                 child: Container(
                   alignment: Alignment.topCenter,
                   child: const Text(
@@ -43,7 +43,8 @@ class LoginScreen extends StatelessWidget {
                     filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),
                     child: Container(
                       width: size.width * 0.9,
-                      height: size.height * 0.45,
+                      // height: size.height * 0.45,
+                      height: size.height * 0.63,
                       decoration: BoxDecoration(
                         color: Colors.grey.shade200.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(8),
@@ -111,7 +112,10 @@ class LoginScreen extends StatelessWidget {
                               height: 50.0,
                               margin: const EdgeInsets.all(10),
                               child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushReplacementNamed(
+                                      context, 'home');
+                                },
                                 style: ButtonStyle(
                                   padding:
                                       MaterialStateProperty.all<EdgeInsets>(
@@ -162,7 +166,8 @@ class LoginScreen extends StatelessWidget {
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = () {
                                           print('sign up');
-                                          Navigator.pushNamed(context, 'signup');
+                                          Navigator.pushNamed(
+                                              context, 'signup');
                                         },
                                       style: const TextStyle(
                                           color: Color(0xffE15FED)),
