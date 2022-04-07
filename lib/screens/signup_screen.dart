@@ -113,25 +113,6 @@ class SignupScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 10.0),
-                              child: Theme(
-                                data: ThemeData().copyWith(
-                                  colorScheme: ThemeData().colorScheme.copyWith(
-                                        primary: const Color.fromARGB(
-                                            212, 146, 84, 200),
-                                      ),
-                                ),
-                                child: const TextField(
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    labelText: 'Confirm password',
-                                  ),
-                                ),
-                              ),
-                            ),
                             Container(
                               height: 50.0,
                               margin: const EdgeInsets.all(10),
