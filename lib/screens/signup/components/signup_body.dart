@@ -12,7 +12,6 @@ class SignupBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return SignupBackground(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -28,12 +27,14 @@ class SignupBody extends StatelessWidget {
                     labelText: 'E-mail', icon: Icons.mail),
                 const OutlineBorderPasswordField(
                     labelText: 'Password', icon: Icons.lock),
-                const RoundedGradientButton(text: 'Sign up'),
+                RoundedGradientButton(
+                  text: 'Sign up',
+                  press: () {},
+                ),
                 AlreadyHaveAnAccountCheck(
                   login: false,
                   press: () {
-                    // print('login');
-                    Navigator.pushNamed(context, 'login');
+                    Navigator.pushReplacementNamed(context, 'login');
                   },
                 ),
               ],

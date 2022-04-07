@@ -29,12 +29,16 @@ class LoginBody extends StatelessWidget {
                 ForgotPasswordCheck(press: () {
                   // print('forgot password');
                 }),
-                const RoundedGradientButton(text: 'Log in'),
+                RoundedGradientButton(
+                  text: 'Log in',
+                  press: () {
+                    Navigator.pushReplacementNamed(context, 'home');
+                  },
+                ),
                 AlreadyHaveAnAccountCheck(
                   login: true,
                   press: () {
-                    // print('sign up');
-                    Navigator.pushNamed(context, 'signup');
+                    Navigator.pushReplacementNamed(context, 'signup');
                   },
                 ),
               ],
