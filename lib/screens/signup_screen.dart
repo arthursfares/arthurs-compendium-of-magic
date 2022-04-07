@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:arthurs_compendium_of_magic/screens/components/outline_border_input_field.dart';
+import 'package:arthurs_compendium_of_magic/screens/components/outline_border_password_field.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -26,13 +28,12 @@ class SignupScreen extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(
-                    horizontal: 60.0, vertical: 80.0),
+                    horizontal: 60.0, vertical: 80.0,),
                 child: Container(
                   alignment: Alignment.topCenter,
                   child: const Text(
                     'Arthur\'s Compendium of Magic',
                     textAlign: TextAlign.center,
-                    // TODO: change title font family
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
                   ),
                 ),
@@ -52,71 +53,9 @@ class SignupScreen extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            // TODO: change TextField colors
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 10.0),
-                              child: Theme(
-                                data: ThemeData(
-                                  //).copyWith(
-                                  colorScheme: ThemeData().colorScheme.copyWith(
-                                        primary: const Color.fromARGB(
-                                            212, 146, 84, 200),
-                                      ),
-                                ),
-                                child: const TextField(
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    labelText: 'Username',
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 10.0),
-                              child: Theme(
-                                data: ThemeData(
-                                  //).copyWith(
-                                  colorScheme: ThemeData().colorScheme.copyWith(
-                                        primary: const Color.fromARGB(
-                                            212, 146, 84, 200),
-                                      ),
-                                ),
-                                child: const TextField(
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    labelText: 'E-mail',
-                                  ),
-                                ),
-                              ),
-                            ),
-                            // TODO: change TextField colors
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 10.0),
-                              child: Theme(
-                                data: ThemeData().copyWith(
-                                  colorScheme: ThemeData().colorScheme.copyWith(
-                                        primary: const Color.fromARGB(
-                                            212, 146, 84, 200),
-                                      ),
-                                ),
-                                child: const TextField(
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    labelText: 'Password',
-                                    suffixIcon: Icon(
-                                      Icons.visibility,
-                                      color: Colors.blueGrey,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
+                            const OutlineBorderInputField(labelText: 'Username', icon: Icons.person),
+                            const OutlineBorderInputField(labelText: 'E-mail', icon: Icons.mail),
+                            const OutlineBorderPasswordField(labelText: 'Password', icon: Icons.lock),
                             Container(
                               height: 50.0,
                               margin: const EdgeInsets.all(10),
@@ -171,7 +110,7 @@ class SignupScreen extends StatelessWidget {
                                       text: 'Log in',
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = () {
-                                          print('login');
+                                          // print('login');
                                           Navigator.pushNamed(context, 'login');
                                         },
                                       style: const TextStyle(
