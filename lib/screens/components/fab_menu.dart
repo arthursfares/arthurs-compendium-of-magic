@@ -29,7 +29,9 @@ class FabMenu extends StatelessWidget {
         ),
         IconButton(
           icon: const FaIcon(FontAwesomeIcons.hatWizard),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, 'spellcasters');
+          },
         ),
       ],
       animationDuration: const Duration(milliseconds: 600),
