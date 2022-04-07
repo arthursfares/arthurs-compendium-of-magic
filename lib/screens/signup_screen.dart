@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:arthurs_compendium_of_magic/screens/components/already_have_an_account_check.dart';
+import 'package:arthurs_compendium_of_magic/screens/components/app_logo.dart';
 import 'package:arthurs_compendium_of_magic/screens/components/outline_border_input_field.dart';
 import 'package:arthurs_compendium_of_magic/screens/components/outline_border_password_field.dart';
 import 'package:arthurs_compendium_of_magic/screens/components/rounded_gradient_button.dart';
@@ -27,20 +28,7 @@ class SignupScreen extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 60.0,
-                  vertical: 80.0,
-                ),
-                child: Container(
-                  alignment: Alignment.topCenter,
-                  child: const Text(
-                    'Arthur\'s Compendium of Magic',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
-                  ),
-                ),
-              ),
+              const AppLogo(),
               Center(
                 child: ClipRect(
                   child: BackdropFilter(
