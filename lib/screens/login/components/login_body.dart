@@ -32,7 +32,7 @@ class LoginBody extends StatelessWidget {
                 RoundedGradientButton(
                   text: 'Log in',
                   press: () {
-                    Navigator.pushReplacementNamed(context, 'home');
+                    Navigator.pushReplacementNamed(context, 'spellcasters');
                   },
                 ),
                 AlreadyHaveAnAccountCheck(

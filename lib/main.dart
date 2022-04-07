@@ -1,4 +1,4 @@
-import 'package:arthurs_compendium_of_magic/screens/home_screen.dart';
+import 'package:arthurs_compendium_of_magic/screens/spellcasters/spellcasters_screen.dart';
 import 'package:arthurs_compendium_of_magic/screens/login/login_screen.dart';
 import 'package:arthurs_compendium_of_magic/screens/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ void main() {
       routes: {
         'login': (context) => const LoginScreen(),
         'signup': (context) => const SignupScreen(),
-        'home': (context) => const HomeScreen(),
+        'spellcasters': (context) => const SpellcastersScreen(),
       },
     )
   );

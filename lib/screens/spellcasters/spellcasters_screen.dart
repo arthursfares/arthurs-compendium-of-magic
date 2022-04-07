@@ -2,8 +2,8 @@ import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class SpellcastersScreen extends StatelessWidget {
+  const SpellcastersScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
