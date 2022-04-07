@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:arthurs_compendium_of_magic/screens/components/outline_border_input_field.dart';
 import 'package:arthurs_compendium_of_magic/screens/components/outline_border_password_field.dart';
+import 'package:arthurs_compendium_of_magic/screens/components/rounded_gradient_button.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -70,51 +71,7 @@ class LoginScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Container(
-                              height: 50.0,
-                              margin: const EdgeInsets.all(10),
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  Navigator.pushReplacementNamed(
-                                      context, 'home');
-                                },
-                                style: ButtonStyle(
-                                  padding:
-                                      MaterialStateProperty.all<EdgeInsets>(
-                                          EdgeInsets.zero),
-                                  shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(80.0),
-                                    ),
-                                  ),
-                                ),
-                                child: Ink(
-                                  decoration: BoxDecoration(
-                                      gradient: const LinearGradient(
-                                        colors: [
-                                          Color(0xff9254C8),
-                                          Color(0xffE15FED)
-                                        ],
-                                        begin: Alignment.centerLeft,
-                                        end: Alignment.centerRight,
-                                      ),
-                                      borderRadius:
-                                          BorderRadius.circular(30.0)),
-                                  child: Container(
-                                    constraints: const BoxConstraints(
-                                        maxWidth: 250.0, minHeight: 50.0),
-                                    alignment: Alignment.center,
-                                    child: const Text(
-                                      "Log in",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 15),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
+                            const RoundedGradientButton(text: 'Log in'),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: RichText(
