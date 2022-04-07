@@ -2,20 +2,21 @@ import 'dart:ui';
 
 import 'package:arthurs_compendium_of_magic/screens/components/already_have_an_account_check.dart';
 import 'package:arthurs_compendium_of_magic/screens/components/app_logo.dart';
+import 'package:arthurs_compendium_of_magic/screens/components/forgot_password_check.dart';
 import 'package:arthurs_compendium_of_magic/screens/components/outline_border_input_field.dart';
 import 'package:arthurs_compendium_of_magic/screens/components/outline_border_password_field.dart';
 import 'package:arthurs_compendium_of_magic/screens/components/rounded_gradient_button.dart';
-import 'package:arthurs_compendium_of_magic/screens/signup/components/background.dart';
+import 'package:arthurs_compendium_of_magic/screens/login/components/login_background.dart';
 import 'package:flutter/material.dart';
 
-class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+class LoginBody extends StatelessWidget {
+  const LoginBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return Background(
+    return LoginBackground(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -26,7 +27,8 @@ class Body extends StatelessWidget {
                 filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),
                 child: Container(
                   width: size.width * 0.9,
-                  height: size.height * 0.60,
+                  // height: size.height * 0.45,
+                  height: size.height * 0.63,
                   decoration: BoxDecoration(
                     color: Colors.grey.shade200.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(8),
@@ -37,16 +39,17 @@ class Body extends StatelessWidget {
                       children: [
                         const OutlineBorderInputField(
                             labelText: 'Username', icon: Icons.person),
-                        const OutlineBorderInputField(
-                            labelText: 'E-mail', icon: Icons.mail),
                         const OutlineBorderPasswordField(
                             labelText: 'Password', icon: Icons.lock),
-                        const RoundedGradientButton(text: 'Sign up'),
+                        ForgotPasswordCheck(press: () {
+                          // print('forgot password');
+                        }),
+                        const RoundedGradientButton(text: 'Log in'),
                         AlreadyHaveAnAccountCheck(
-                          login: false,
+                          login: true,
                           press: () {
-                            // print('login');
-                            Navigator.pushNamed(context, 'login');
+                            // print('sign up');
+                            Navigator.pushNamed(context, 'signup');
                           },
                         ),
                       ],

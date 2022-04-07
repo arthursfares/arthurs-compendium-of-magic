@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Background extends StatelessWidget {
-  const Background({
+class SignupBackground extends StatelessWidget {
+  const SignupBackground({
     Key? key,
     required this.child,
   }) : super(key: key);

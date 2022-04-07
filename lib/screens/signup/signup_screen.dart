@@ -1,4 +1,4 @@
-import 'package:arthurs_compendium_of_magic/screens/signup/components/body.dart';
+import 'package:arthurs_compendium_of_magic/screens/signup/components/signup_body.dart';
 import 'package:flutter/material.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -7,7 +7,7 @@ class SignupScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Body()
+      body: SignupBody()
     );
   }
 }
