@@ -10,19 +10,6 @@ class HomeScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          child: const Text(
-            'EXIT',
-            style: TextStyle(
-              fontSize: 23.0,
-            ),
-          ),
-          onPressed: () {
-            Navigator.pushReplacementNamed(context, 'login');
-          },
-        ),
-      ),
       floatingActionButton: FabCircularMenu(
         fabOpenIcon: const FaIcon(FontAwesomeIcons.skull),
         fabCloseIcon: const FaIcon(FontAwesomeIcons.xmark),
@@ -31,14 +18,21 @@ class HomeScreen extends StatelessWidget {
         ringColor: const Color(0x11161616),
         children: <Widget>[
           IconButton(
-              icon: const FaIcon(FontAwesomeIcons.mugHot), onPressed: () {}),
+            icon: const FaIcon(FontAwesomeIcons.mugHot),
+            onPressed: () {},
+          ),
           IconButton(
-              icon: const FaIcon(FontAwesomeIcons.wandMagicSparkles),
-              onPressed: () {}),
+            icon: const FaIcon(FontAwesomeIcons.wandMagicSparkles),
+            onPressed: () {},
+          ),
           IconButton(
-              icon: const FaIcon(FontAwesomeIcons.bookSkull), onPressed: () {}),
+            icon: const FaIcon(FontAwesomeIcons.bookSkull),
+            onPressed: () {},
+          ),
           IconButton(
-              icon: const FaIcon(FontAwesomeIcons.hatWizard), onPressed: () {}),
+            icon: const FaIcon(FontAwesomeIcons.hatWizard),
+            onPressed: () {},
+          ),
         ],
         animationDuration: const Duration(milliseconds: 600),
         animationCurve: Curves.linearToEaseOut,
