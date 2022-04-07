@@ -13,8 +13,7 @@ class FabMenu extends StatelessWidget {
       fabOpenIcon: const FaIcon(FontAwesomeIcons.skull),
       fabCloseIcon: const FaIcon(FontAwesomeIcons.xmark),
       ringDiameter: size.width,
-      // ringColor: const Color(0x00ffffff),
-      ringColor: const Color(0x11161616),
+      ringColor: ThemeData.dark().primaryColor,
       children: <Widget>[
         IconButton(
           icon: const FaIcon(FontAwesomeIcons.mugHot),
