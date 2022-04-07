@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:arthurs_compendium_of_magic/screens/components/already_have_an_account_check.dart';
 import 'package:arthurs_compendium_of_magic/screens/components/outline_border_input_field.dart';
 import 'package:arthurs_compendium_of_magic/screens/components/outline_border_password_field.dart';
 import 'package:arthurs_compendium_of_magic/screens/components/rounded_gradient_button.dart';
@@ -55,8 +56,10 @@ class LoginScreen extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const OutlineBorderInputField(labelText: 'Username', icon: Icons.person),
-                            const OutlineBorderPasswordField(labelText: 'Password', icon: Icons.lock),
+                            const OutlineBorderInputField(
+                                labelText: 'Username', icon: Icons.person),
+                            const OutlineBorderPasswordField(
+                                labelText: 'Password', icon: Icons.lock),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: RichText(
@@ -72,29 +75,12 @@ class LoginScreen extends StatelessWidget {
                               ),
                             ),
                             const RoundedGradientButton(text: 'Log in'),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: RichText(
-                                text: TextSpan(
-                                  text: 'Don\'t have an account? ',
-                                  style: const TextStyle(
-                                      color: Colors.white, fontSize: 15),
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                      text: 'Sign up',
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () {
-                                          // print('sign up');
-                                          Navigator.pushNamed(
-                                              context, 'signup');
-                                        },
-                                      style: const TextStyle(
-                                          color: Color(0xffE15FED)),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+                            AlreadyHaveAnAccountCheck(
+                                login: true,
+                                press: () {
+                                  // print('sign up');
+                                  Navigator.pushNamed(context, 'signup');
+                                }),
                           ],
                         ),
                       ),
