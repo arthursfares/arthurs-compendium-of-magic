@@ -50,16 +50,17 @@ class LoginScreen extends StatelessWidget {
                                 labelText: 'Username', icon: Icons.person),
                             const OutlineBorderPasswordField(
                                 labelText: 'Password', icon: Icons.lock),
-                            ForgotPasswordCheck(press: (){
+                            ForgotPasswordCheck(press: () {
                               // print('forgot password');
                             }),
                             const RoundedGradientButton(text: 'Log in'),
                             AlreadyHaveAnAccountCheck(
-                                login: true,
-                                press: () {
-                                  // print('sign up');
-                                  Navigator.pushNamed(context, 'signup');
-                                }),
+                              login: true,
+                              press: () {
+                                // print('sign up');
+                                Navigator.pushNamed(context, 'signup');
+                              },
+                            ),
                           ],
                         ),
                       ),

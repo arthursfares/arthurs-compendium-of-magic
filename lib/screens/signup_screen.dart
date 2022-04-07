@@ -52,11 +52,12 @@ class SignupScreen extends StatelessWidget {
                                 labelText: 'Password', icon: Icons.lock),
                             const RoundedGradientButton(text: 'Sign up'),
                             AlreadyHaveAnAccountCheck(
-                                login: false,
-                                press: () {
-                                  // print('login');
-                                  Navigator.pushNamed(context, 'login');
-                                }),
+                              login: false,
+                              press: () {
+                                // print('login');
+                                Navigator.pushNamed(context, 'login');
+                              },
+                            ),
                           ],
                         ),
                       ),
