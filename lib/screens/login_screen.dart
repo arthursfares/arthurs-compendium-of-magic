@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:arthurs_compendium_of_magic/screens/components/already_have_an_account_check.dart';
+import 'package:arthurs_compendium_of_magic/screens/components/forgot_password_check.dart';
 import 'package:arthurs_compendium_of_magic/screens/components/outline_border_input_field.dart';
 import 'package:arthurs_compendium_of_magic/screens/components/outline_border_password_field.dart';
 import 'package:arthurs_compendium_of_magic/screens/components/rounded_gradient_button.dart';
@@ -60,20 +61,9 @@ class LoginScreen extends StatelessWidget {
                                 labelText: 'Username', icon: Icons.person),
                             const OutlineBorderPasswordField(
                                 labelText: 'Password', icon: Icons.lock),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: RichText(
-                                text: TextSpan(
-                                  text: 'Forgot your password?',
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {
-                                      // print('forgot password');
-                                    },
-                                  style: const TextStyle(
-                                      color: Color.fromARGB(212, 146, 84, 200)),
-                                ),
-                              ),
-                            ),
+                            ForgotPasswordCheck(press: (){
+                              // print('forgot password');
+                            }),
                             const RoundedGradientButton(text: 'Log in'),
                             AlreadyHaveAnAccountCheck(
                                 login: true,
