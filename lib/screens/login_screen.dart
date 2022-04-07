@@ -5,7 +5,6 @@ import 'package:arthurs_compendium_of_magic/screens/components/forgot_password_c
 import 'package:arthurs_compendium_of_magic/screens/components/outline_border_input_field.dart';
 import 'package:arthurs_compendium_of_magic/screens/components/outline_border_password_field.dart';
 import 'package:arthurs_compendium_of_magic/screens/components/rounded_gradient_button.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
