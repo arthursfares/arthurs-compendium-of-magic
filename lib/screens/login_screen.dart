@@ -90,6 +90,10 @@ class LoginScreen extends StatelessWidget {
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
                                     labelText: 'Password',
+                                    suffixIcon: Icon(
+                                      Icons.visibility,
+                                      color: Colors.blueGrey,
+                                    ),
                                   ),
                                 ),
                               ),
