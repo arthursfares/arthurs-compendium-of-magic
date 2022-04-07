@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
 class RoundedGradientButton extends StatelessWidget {
-  const RoundedGradientButton({Key? key, required this.text}) : super(key: key);
+  const RoundedGradientButton({
+    Key? key,
+    required this.text,
+    required this.press,
+  }) : super(key: key);
 
   final String text;
+  final VoidCallback press;
 
   @override
   Widget build(BuildContext context) {
@@ -11,9 +16,7 @@ class RoundedGradientButton extends StatelessWidget {
       height: 50.0,
       margin: const EdgeInsets.all(10),
       child: ElevatedButton(
-        onPressed: () {
-          Navigator.pushReplacementNamed(context, 'home');
-        },
+        onPressed: press,
         style: ButtonStyle(
           padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
