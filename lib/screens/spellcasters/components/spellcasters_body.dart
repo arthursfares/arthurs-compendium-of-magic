@@ -20,7 +20,7 @@ class SpellcastersBody extends StatelessWidget {
       height: size.height,
       child: Column(
         children: <Widget>[
-          Flexible(
+          Expanded(
             child: ListView.builder(
               shrinkWrap: true,
               // reverse: true,
