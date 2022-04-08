@@ -118,6 +118,10 @@ class _SpellcastersBodyState extends State<SpellcastersBody> {
                 // addItemToList();
                 _displayTextInputDialog(context);
               },
+              style: ElevatedButton.styleFrom(
+                primary: const Color.fromARGB(255, 146, 109, 213), // background
+                onPrimary: Colors.white, // foreground
+              ),
             ),
           ),
         ],
