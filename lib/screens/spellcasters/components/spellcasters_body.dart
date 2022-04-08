@@ -1,3 +1,4 @@
+import 'package:arthurs_compendium_of_magic/screens/spellcasters/components/spellcaster_card.dart';
 import 'package:flutter/material.dart';
 
 class SpellcastersBody extends StatefulWidget {
@@ -89,17 +90,7 @@ class _SpellcastersBodyState extends State<SpellcastersBody> {
               padding: const EdgeInsets.all(10),
               itemCount: names.length,
               itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  height: 50,
-                  margin: const EdgeInsets.all(2),
-                  color: Colors.grey,
-                  child: Center(
-                    child: Text(
-                      names[index],
-                      style: const TextStyle(fontSize: 18),
-                    ),
-                  ),
-                );
+                return SpellcasterCard(spellcasterName: names[index]);
               },
             ),
           ),
