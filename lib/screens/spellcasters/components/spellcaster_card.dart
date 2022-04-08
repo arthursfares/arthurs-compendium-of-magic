@@ -41,7 +41,7 @@ class CardContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(76.0, 16.0, 16.0, 16.0),
+      margin: const EdgeInsets.fromLTRB(76.0 + 46.0 + 16.0, 16.0, 16.0, 16.0),
       constraints: const BoxConstraints.expand(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +75,7 @@ class Card extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 124.0,
-      margin: const EdgeInsets.only(left: 46.0),
+      // margin: const EdgeInsets.only(left: 46.0),
       decoration: BoxDecoration(
         color: const Color(0xFF333366),
         shape: BoxShape.rectangle,
@@ -104,14 +104,17 @@ class Thumbnail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 16.0),
+      // margin: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
       alignment: FractionalOffset.centerLeft,
       child: ClipOval(
         child: Image(
           filterQuality: FilterQuality.high,
           image: AssetImage(imagePath),
-          height: 92.0,
-          width: 92.0,
+          // height: 92.0,
+          // width: 92.0,
+          height: 100.0,
+          width: 100.0,
           fit: BoxFit.cover,
         ),
       ),
