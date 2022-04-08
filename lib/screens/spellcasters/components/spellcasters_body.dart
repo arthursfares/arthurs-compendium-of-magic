@@ -14,6 +14,11 @@ class _SpellcastersBodyState extends State<SpellcastersBody> {
     'Victor',
     'Tim',
   ];
+  final List<String> images = <String>[
+    'assets/images/larry-bird.png',
+    'assets/images/victor.png',
+    'assets/images/tim.png',
+  ];
 
   TextEditingController nameController = TextEditingController();
 
@@ -21,6 +26,7 @@ class _SpellcastersBodyState extends State<SpellcastersBody> {
     setState(() {
       // names.insert(0, nameController.text);
       names.insert(names.length, nameController.text);
+      images.insert(images.length, 'assets/images/mordenkainen.png');
     });
   }
 
@@ -90,7 +96,10 @@ class _SpellcastersBodyState extends State<SpellcastersBody> {
               padding: const EdgeInsets.all(10),
               itemCount: names.length,
               itemBuilder: (BuildContext context, int index) {
-                return SpellcasterCard(spellcasterName: names[index]);
+                return SpellcasterCard(
+                  spellcasterName: names[index],
+                  imagePath: images[index],
+                );
               },
             ),
           ),
