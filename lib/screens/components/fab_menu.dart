@@ -1,41 +1,65 @@
-import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class FabMenu extends StatelessWidget {
+class FabMenu extends StatefulWidget {
   const FabMenu({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+  State<FabMenu> createState() => _FabMenuState();
+}
 
-    return FabCircularMenu(
-      fabOpenIcon: const FaIcon(FontAwesomeIcons.skull),
-      fabCloseIcon: const FaIcon(FontAwesomeIcons.xmark),
-      ringDiameter: size.width,
-      ringColor: ThemeData.dark().primaryColor,
-      children: <Widget>[
-        IconButton(
-          icon: const FaIcon(FontAwesomeIcons.mugHot),
-          onPressed: () {
-            Navigator.pushReplacementNamed(context, 'about');
-          },
-        ),
-        IconButton(
-          icon: const FaIcon(FontAwesomeIcons.bookSkull),
-          onPressed: () {
-            Navigator.pushReplacementNamed(context, 'spellbook');
-          },
-        ),
-        IconButton(
-          icon: const FaIcon(FontAwesomeIcons.hatWizard),
-          onPressed: () {
-            Navigator.pushReplacementNamed(context, 'spellcasters');
-          },
-        ),
-      ],
-      animationDuration: const Duration(milliseconds: 600),
-      animationCurve: Curves.linearToEaseOut,
+class _FabMenuState extends State<FabMenu> {
+  ValueNotifier<bool> isDialOpen = ValueNotifier(false);
+
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: () async {
+        if (isDialOpen.value) {
+          setState(() {
+            isDialOpen.value = false;
+          });
+          return false;
+        }
+        return true;
+      },
+      child: SpeedDial(
+        icon: FontAwesomeIcons.skull,
+        activeIcon: FontAwesomeIcons.xmark,
+        openCloseDial: isDialOpen,
+        backgroundColor: Colors.redAccent,
+        overlayColor: Colors.grey,
+        overlayOpacity: 0.5,
+        spacing: 15,
+        spaceBetweenChildren: 15,
+        closeManually: false,
+        childrenButtonSize: const Size(60.0, 60.0),
+        children: [
+          SpeedDialChild(
+            child: const FaIcon(FontAwesomeIcons.hatWizard),
+            label: 'Spellcasters',
+            onTap: () {
+              Navigator.pushReplacementNamed(context, 'spellcasters');
+            },
+          ),
+          SpeedDialChild(
+            child: const FaIcon(FontAwesomeIcons.bookSkull),
+            label: 'Spellbook',
+            // backgroundColor: Colors.blue,
+            onTap: () {
+              Navigator.pushReplacementNamed(context, 'spellbook');
+            },
+          ),
+          SpeedDialChild(
+            child: const FaIcon(FontAwesomeIcons.mugHot),
+            label: 'About',
+            onTap: () {
+              Navigator.pushReplacementNamed(context, 'about');
+            },
+          ),
+        ],
+      ),
     );
   }
 }
