@@ -17,7 +17,9 @@ class FabMenu extends StatelessWidget {
       children: <Widget>[
         IconButton(
           icon: const FaIcon(FontAwesomeIcons.mugHot),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, 'about');
+          },
         ),
         IconButton(
           icon: const FaIcon(FontAwesomeIcons.bookSkull),
