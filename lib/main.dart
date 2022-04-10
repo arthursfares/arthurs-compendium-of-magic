@@ -1,4 +1,5 @@
 import 'package:arthurs_compendium_of_magic/screens/about/about_screen.dart';
+import 'package:arthurs_compendium_of_magic/screens/settings/settings_screen.dart';
 import 'package:arthurs_compendium_of_magic/screens/spellbook/spellbook_screen.dart';
 import 'package:arthurs_compendium_of_magic/screens/spellcasters/spellcasters_screen.dart';
 import 'package:arthurs_compendium_of_magic/screens/login/login_screen.dart';
@@ -17,6 +18,7 @@ void main() {
         'spellcasters': (context) => const SpellcastersScreen(),
         'spellbook': (context) => const SpellbookScreen(),
         'about': (context) => const AboutScreen(),
+        'settings': (context) => const SettingsScreen(),
       },
     )
   );
