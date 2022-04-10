@@ -25,7 +25,9 @@ class FabMenu extends StatelessWidget {
         ),
         IconButton(
           icon: const FaIcon(FontAwesomeIcons.bookSkull),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, 'spellbook');
+          },
         ),
         IconButton(
           icon: const FaIcon(FontAwesomeIcons.hatWizard),
