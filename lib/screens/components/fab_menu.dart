@@ -1,3 +1,4 @@
+import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -37,14 +38,14 @@ class _FabMenuState extends State<FabMenu> {
         childrenButtonSize: const Size(60.0, 60.0),
         children: [
           SpeedDialChild(
-            child: const FaIcon(FontAwesomeIcons.hatWizard),
+            child: const FaIcon(FontAwesomeIcons.hatWizard, size: 19.0,),
             label: 'Spellcasters',
             onTap: () {
               Navigator.pushReplacementNamed(context, 'spellcasters');
             },
           ),
           SpeedDialChild(
-            child: const FaIcon(FontAwesomeIcons.bookSkull),
+            child: const FaIcon(FontAwesomeIcons.bookSkull, size: 19.0,),
             label: 'Spellbook',
             // backgroundColor: Colors.blue,
             onTap: () {
@@ -52,7 +53,7 @@ class _FabMenuState extends State<FabMenu> {
             },
           ),
           SpeedDialChild(
-            child: const FaIcon(FontAwesomeIcons.mugHot),
+            child: const FaIcon(FontAwesomeIcons.mugHot, size: 19.0,),
             label: 'About',
             onTap: () {
               Navigator.pushReplacementNamed(context, 'about');
