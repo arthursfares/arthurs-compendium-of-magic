@@ -20,10 +20,6 @@ class FabMenu extends StatelessWidget {
           onPressed: () {},
         ),
         IconButton(
-          icon: const FaIcon(FontAwesomeIcons.wandMagicSparkles),
-          onPressed: () {},
-        ),
-        IconButton(
           icon: const FaIcon(FontAwesomeIcons.bookSkull),
           onPressed: () {
             Navigator.pushReplacementNamed(context, 'spellbook');
