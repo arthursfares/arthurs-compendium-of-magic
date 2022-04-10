@@ -59,6 +59,13 @@ class _FabMenuState extends State<FabMenu> {
               Navigator.pushReplacementNamed(context, 'about');
             },
           ),
+          SpeedDialChild(
+            child: const Icon(CommunityMaterialIcons.crystal_ball),
+            label: 'Settings',
+            onTap: () {
+              Navigator.pushReplacementNamed(context, 'settings');
+            },
+          ),
         ],
       ),
     );
