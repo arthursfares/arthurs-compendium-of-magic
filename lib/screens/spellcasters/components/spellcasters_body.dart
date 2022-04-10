@@ -23,7 +23,6 @@ class SpellcastersBody extends StatelessWidget {
           Expanded(
             child: ListView.builder(
               shrinkWrap: true,
-              // reverse: true,
               reverse: false,
               padding: const EdgeInsets.all(10),
               itemCount: names.length,

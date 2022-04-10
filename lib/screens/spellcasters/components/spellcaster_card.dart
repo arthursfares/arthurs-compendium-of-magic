@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SpellcasterCard extends StatelessWidget {
+class SpellcasterCard extends StatefulWidget {
   const SpellcasterCard({
     Key? key,
     required this.spellcasterName,
@@ -11,19 +11,36 @@ class SpellcasterCard extends StatelessWidget {
   final String imagePath;
 
   @override
+  State<SpellcasterCard> createState() => _SpellcasterCardState();
+}
+
+class _SpellcasterCardState extends State<SpellcasterCard> {
+  bool isCardSelected = false;
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-        height: 120.0,
-        margin: const EdgeInsets.symmetric(
-          vertical: 16.0,
-          horizontal: 24.0,
-        ),
-        child: Stack(
-          children: <Widget>[
-            Card(spellcasterName: spellcasterName),
-            Thumbnail(imagePath: imagePath),
-          ],
-        ));
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          isCardSelected = !isCardSelected;
+        });
+      },
+      child: Container(
+          height: 120.0,
+          margin: const EdgeInsets.symmetric(
+            vertical: 16.0,
+            horizontal: 24.0,
+          ),
+          child: Stack(
+            children: <Widget>[
+              Card(
+                spellcasterName: widget.spellcasterName,
+                isCardSelected: isCardSelected,
+              ),
+              Thumbnail(imagePath: widget.imagePath),
+            ],
+          )),
+    );
   }
 }
 
@@ -35,8 +52,9 @@ class CardContent extends StatelessWidget {
 
   final String spellcasterName;
 
-  final TextStyle headerTextStyle = const TextStyle(fontFamily: 'Poppins').copyWith(
-      color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.w600);
+  final TextStyle headerTextStyle = const TextStyle(fontFamily: 'Poppins')
+      .copyWith(
+          color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.w600);
 
   @override
   Widget build(BuildContext context) {
@@ -67,9 +85,11 @@ class Card extends StatelessWidget {
   const Card({
     Key? key,
     required this.spellcasterName,
+    required this.isCardSelected,
   }) : super(key: key);
 
   final String spellcasterName;
+  final bool isCardSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -80,13 +100,26 @@ class Card extends StatelessWidget {
         color: const Color(0xFF333366),
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.circular(8.0),
-        boxShadow: const <BoxShadow>[
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 10.0,
-            offset: Offset(0.0, 10.0),
-          ),
-        ],
+        boxShadow: isCardSelected
+            ? const <BoxShadow>[
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 10.0,
+                  offset: Offset(0.0, 10.0),
+                ),
+                BoxShadow(
+                  color: Color.fromARGB(130, 237, 125, 58),
+                  blurRadius: 15,
+                  spreadRadius: 15,
+                ),
+              ]
+            : const <BoxShadow>[
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 10.0,
+                  offset: Offset(0.0, 10.0),
+                ),
+              ],
       ),
       child: CardContent(spellcasterName: spellcasterName),
     );
