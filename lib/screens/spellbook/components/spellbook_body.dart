@@ -1,12 +1,47 @@
+import 'package:arthurs_compendium_of_magic/models/spell_token.dart';
 import 'package:flutter/material.dart';
 
-class SpellbookBody extends StatelessWidget {
-  const SpellbookBody({ Key? key }) : super(key: key);
+class SpellbookBody extends StatefulWidget {
+  const SpellbookBody({Key? key}) : super(key: key);
+
+  @override
+  State<SpellbookBody> createState() => _SpellbookBodyState();
+}
+
+class _SpellbookBodyState extends State<SpellbookBody> {
+  // TODO: fill list with saved spells.
+  List<SpellToken> spells = [];
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    Size size = MediaQuery.of(context).size;
+
+    return SizedBox(
+      width: size.width,
+      height: size.height,
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              reverse: false,
+              padding: const EdgeInsets.all(10),
+              itemCount: spells.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListTile(
+                    title: Text(spells[index].name),
+                    onTap: () { 
+                      // show spell description screen
+                    },
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
