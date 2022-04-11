@@ -16,7 +16,7 @@ class SpellbookScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: IconButton(
               icon: const FaIcon(FontAwesomeIcons.plus),
-              onPressed: () {},
+              onPressed: () { Navigator.pushNamed(context, 'add_spell'); },
             ),
           ),
         ],
