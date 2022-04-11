@@ -60,7 +60,7 @@ class _FabMenuState extends State<FabMenu> {
             },
           ),
           SpeedDialChild(
-            child: const Icon(CommunityMaterialIcons.crystal_ball),
+            child: const FaIcon(FontAwesomeIcons.flask, size: 19.0,),
             label: 'Settings',
             onTap: () {
               Navigator.pushReplacementNamed(context, 'settings');
