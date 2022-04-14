@@ -1,8 +1,8 @@
-import 'package:arthurs_compendium_of_magic/screens/spellcasters/components/spellcaster_card.dart';
+import 'package:arthurs_compendium_of_magic/screens/spellcasters/components/spellcaster_list_card.dart';
 import 'package:flutter/material.dart';
 
-class SpellcastersBody extends StatelessWidget {
-  const SpellcastersBody({
+class SpellcastersBodyList extends StatelessWidget {
+  const SpellcastersBodyList({
     Key? key,
     required this.names,
     required this.images,
@@ -27,7 +27,7 @@ class SpellcastersBody extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               itemCount: names.length,
               itemBuilder: (BuildContext context, int index) {
-                return SpellcasterCard(
+                return SpellcasterListCard(
                   spellcasterName: names[index],
                   imagePath: images[index],
                 );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SpellcasterCard extends StatefulWidget {
-  const SpellcasterCard({
+class SpellcasterListCard extends StatefulWidget {
+  const SpellcasterListCard({
     Key? key,
     required this.spellcasterName,
     required this.imagePath,
@@ -11,10 +11,10 @@ class SpellcasterCard extends StatefulWidget {
   final String imagePath;
 
   @override
-  State<SpellcasterCard> createState() => _SpellcasterCardState();
+  State<SpellcasterListCard> createState() => _SpellcasterListCardState();
 }
 
-class _SpellcasterCardState extends State<SpellcasterCard> {
+class _SpellcasterListCardState extends State<SpellcasterListCard> {
   bool isCardSelected = false;
 
   @override
