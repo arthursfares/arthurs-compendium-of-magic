@@ -33,6 +33,7 @@ dependencies:
   http: ^0.13.4
   flutter_markdown: ^0.6.9+1
   flutter_speed_dial: ^5.1.0
+  carousel_slider: ^4.0.0
   font_awesome_flutter: ^10.1.0
   community_material_icon: ^5.9.55
 
