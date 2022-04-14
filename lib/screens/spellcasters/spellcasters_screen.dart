@@ -1,3 +1,4 @@
+import 'package:arthurs_compendium_of_magic/models/spellcaster_model.dart';
 import 'package:arthurs_compendium_of_magic/screens/components/fab_menu.dart';
 import 'package:arthurs_compendium_of_magic/screens/spellcasters/components/spellcasters_body_carousel.dart';
 import 'package:arthurs_compendium_of_magic/screens/spellcasters/components/spellcasters_body_list.dart';
@@ -14,32 +15,24 @@ class SpellcastersScreen extends StatefulWidget {
 
 class _SpellcastersScreenState extends State<SpellcastersScreen> {
   final List<bool> viewsToggleList = [true, false];
-
-  final List<String> names = <String>[
-    'Larry Bird',
-    'Victor',
-    'Tim',
-    'Nic Cage',
-    'Euler',
-    'Mordenkainen',
-  ];
-
-  final List<String> images = <String>[
-    'assets/images/larry-bird.png',
-    'assets/images/victor.png',
-    'assets/images/tim.png',
-    'assets/images/nic-cage.png',
-    'assets/images/euler.png',
-    'assets/images/mordenkainen.png',
-  ];
+  List<SpellcasterModel> spellcasters = <SpellcasterModel>[];
 
   TextEditingController nameController = TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+    spellcasters.insert(spellcasters.length, SpellcasterModel('Larry Bird', const AssetImage('assets/images/larry-bird.png')));
+    spellcasters.insert(spellcasters.length, SpellcasterModel('Victor', const AssetImage('assets/images/victor.png')));
+    spellcasters.insert(spellcasters.length, SpellcasterModel('Tim', const AssetImage('assets/images/tim.png')));
+    spellcasters.insert(spellcasters.length, SpellcasterModel('Nic Cage', const AssetImage('assets/images/nic-cage.png')));
+    spellcasters.insert(spellcasters.length, SpellcasterModel('Euler', const AssetImage('assets/images/euler.png')));
+  }
+
+
   void addItemToList() {
     setState(() {
-      // names.insert(0, nameController.text);
-      names.insert(names.length, nameController.text);
-      images.insert(images.length, 'assets/images/anime-hamster.png');
+      spellcasters.insert(spellcasters.length, SpellcasterModel(nameController.text, 'assets/images/anime-hamster.png'));
     });
   }
 
@@ -130,8 +123,8 @@ class _SpellcastersScreenState extends State<SpellcastersScreen> {
         ],
       ),
       body: viewsToggleList[0]
-          ? SpellcastersBodyList(names: names, images: images)
-          : SpellcastersBodyCarousel(names: names, images: images),
+          ? SpellcastersBodyList(spellcasters: spellcasters)
+          : SpellcastersBodyCarousel(spellcasters: spellcasters),
       floatingActionButton: const FabMenu(),
     );
   }

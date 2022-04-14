@@ -1,15 +1,14 @@
+import 'package:arthurs_compendium_of_magic/models/spellcaster_model.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class SpellcastersBodyCarousel extends StatelessWidget {
   const SpellcastersBodyCarousel({
     Key? key,
-    required this.names,
-    required this.images,
+    required this.spellcasters,
   }) : super(key: key);
 
-  final List<String> names;
-  final List<String> images;
+  final List<SpellcasterModel> spellcasters;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class SpellcastersBodyCarousel extends StatelessWidget {
           height: size.height * 0.7,
           enlargeCenterPage: true,
         ),
-        items: names.map((name) {
+        items: spellcasters.map((spellcaster) {
           return Builder(
             builder: (BuildContext context) {
               return Stack(
@@ -41,7 +40,7 @@ class SpellcastersBodyCarousel extends StatelessWidget {
                           margin: const EdgeInsets.symmetric(vertical: 90.0),
                           alignment: FractionalOffset.center,
                           child: Text(
-                            name,
+                            spellcaster.spellcasterName,
                             style: const TextStyle(
                               fontSize: 33.0,
                               fontWeight: FontWeight.w800,
@@ -57,7 +56,7 @@ class SpellcastersBodyCarousel extends StatelessWidget {
                       child: Image(
                         width: 200.0,
                         height: 200.0,
-                        image: AssetImage(images[names.indexOf(name)]),
+                        image: spellcaster.spellcasterThumbnail,
                       ),
                     ),
                   ),

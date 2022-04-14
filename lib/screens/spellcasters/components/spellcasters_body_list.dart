@@ -1,15 +1,14 @@
+import 'package:arthurs_compendium_of_magic/models/spellcaster_model.dart';
 import 'package:arthurs_compendium_of_magic/screens/spellcasters/components/spellcaster_list_card.dart';
 import 'package:flutter/material.dart';
 
 class SpellcastersBodyList extends StatefulWidget {
   const SpellcastersBodyList({
     Key? key,
-    required this.names,
-    required this.images,
+    required this.spellcasters,
   }) : super(key: key);
 
-  final List<String> names;
-  final List<String> images;
+  final List<SpellcasterModel> spellcasters ;
 
   @override
   State<SpellcastersBodyList> createState() => _SpellcastersBodyListState();
@@ -21,7 +20,7 @@ class _SpellcastersBodyListState extends State<SpellcastersBodyList> {
   @override
   void initState() {
     super.initState();
-    selectionControlList = List<bool>.filled(widget.names.length, false);
+    selectionControlList = List<bool>.filled(widget.spellcasters.length, false);
   }
 
   @override
@@ -38,7 +37,7 @@ class _SpellcastersBodyListState extends State<SpellcastersBodyList> {
               shrinkWrap: true,
               reverse: false,
               padding: const EdgeInsets.all(10),
-              itemCount: widget.names.length,
+              itemCount: widget.spellcasters.length,
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
                   onTap: () {
@@ -55,8 +54,8 @@ class _SpellcastersBodyListState extends State<SpellcastersBodyList> {
                     });
                   },
                   child: SpellcasterListCard(
-                    spellcasterName: widget.names[index],
-                    imagePath: widget.images[index],
+                    spellcasterName: widget.spellcasters[index].spellcasterName,
+                    image: widget.spellcasters[index].spellcasterThumbnail,
                     isCardSelected: selectionControlList[index],
                   ),
                 );

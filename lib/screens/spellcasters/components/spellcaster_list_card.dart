@@ -4,12 +4,12 @@ class SpellcasterListCard extends StatelessWidget {
   const SpellcasterListCard({
     Key? key,
     required this.spellcasterName,
-    required this.imagePath,
+    required this.image,
     required this.isCardSelected,
   }) : super(key: key);
 
   final String spellcasterName;
-  final String imagePath;
+  final AssetImage image;
   final bool isCardSelected;
 
   @override
@@ -26,7 +26,7 @@ class SpellcasterListCard extends StatelessWidget {
               spellcasterName: spellcasterName,
               isCardSelected: isCardSelected,
             ),
-            Thumbnail(imagePath: imagePath),
+            Thumbnail(image: image),
           ],
         ));
   }
@@ -117,10 +117,10 @@ class Card extends StatelessWidget {
 class Thumbnail extends StatelessWidget {
   const Thumbnail({
     Key? key,
-    required this.imagePath,
+    required this.image,
   }) : super(key: key);
 
-  final String imagePath;
+  final AssetImage image;
 
   @override
   Widget build(BuildContext context) {
@@ -131,7 +131,7 @@ class Thumbnail extends StatelessWidget {
       child: ClipOval(
         child: Image(
           filterQuality: FilterQuality.high,
-          image: AssetImage(imagePath),
+          image: image,
           // height: 92.0,
           // width: 92.0,
           height: 100.0,
