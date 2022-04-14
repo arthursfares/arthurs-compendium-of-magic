@@ -1,46 +1,34 @@
 import 'package:flutter/material.dart';
 
-class SpellcasterListCard extends StatefulWidget {
+class SpellcasterListCard extends StatelessWidget {
   const SpellcasterListCard({
     Key? key,
     required this.spellcasterName,
     required this.imagePath,
+    required this.isCardSelected,
   }) : super(key: key);
 
   final String spellcasterName;
   final String imagePath;
-
-  @override
-  State<SpellcasterListCard> createState() => _SpellcasterListCardState();
-}
-
-class _SpellcasterListCardState extends State<SpellcasterListCard> {
-  bool isCardSelected = false;
+  final bool isCardSelected;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          isCardSelected = !isCardSelected;
-        });
-      },
-      child: Container(
-          height: 120.0,
-          margin: const EdgeInsets.symmetric(
-            vertical: 16.0,
-            horizontal: 24.0,
-          ),
-          child: Stack(
-            children: <Widget>[
-              Card(
-                spellcasterName: widget.spellcasterName,
-                isCardSelected: isCardSelected,
-              ),
-              Thumbnail(imagePath: widget.imagePath),
-            ],
-          )),
-    );
+    return Container(
+        height: 120.0,
+        margin: const EdgeInsets.symmetric(
+          vertical: 16.0,
+          horizontal: 24.0,
+        ),
+        child: Stack(
+          children: <Widget>[
+            Card(
+              spellcasterName: spellcasterName,
+              isCardSelected: isCardSelected,
+            ),
+            Thumbnail(imagePath: imagePath),
+          ],
+        ));
   }
 }
 
