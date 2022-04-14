@@ -9,7 +9,6 @@ class SpellbookBody extends StatefulWidget {
 }
 
 class _SpellbookBodyState extends State<SpellbookBody> {
-  // TODO: fill list with saved spells.
   List<SpellToken> spells = [];
 
   @override
