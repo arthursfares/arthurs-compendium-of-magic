@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SpellcasterListCard extends StatelessWidget {
   const SpellcasterListCard({
@@ -59,10 +60,20 @@ class CardContent extends StatelessWidget {
           ),
           Container(height: 10.0),
           Container(
-              margin: const EdgeInsets.symmetric(vertical: 8.0),
-              height: 2.0,
-              width: 18.0,
-              color: const Color(0xff00c6ff)),
+            margin: const EdgeInsets.symmetric(vertical: 8.0),
+            height: 2.0,
+            width: 18.0,
+            color: const Color(0xff00c6ff),
+          ),
+          ElevatedButton(
+            child: const FaIcon(
+              FontAwesomeIcons.bookSkull,
+              size: 19.0,
+            ),
+            onPressed: () {
+              Navigator.pushNamed(context, 'spellbook');
+            },
+          ),
         ],
       ),
     );

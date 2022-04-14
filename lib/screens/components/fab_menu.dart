@@ -45,14 +45,6 @@ class _FabMenuState extends State<FabMenu> {
             },
           ),
           SpeedDialChild(
-            child: const FaIcon(FontAwesomeIcons.bookSkull, size: 19.0,),
-            label: 'Spellbook',
-            // backgroundColor: Colors.blue,
-            onTap: () {
-              Navigator.pushReplacementNamed(context, 'spellbook');
-            },
-          ),
-          SpeedDialChild(
             child: const FaIcon(FontAwesomeIcons.mugHot, size: 19.0,),
             label: 'About',
             onTap: () {

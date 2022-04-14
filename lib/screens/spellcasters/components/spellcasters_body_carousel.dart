@@ -1,6 +1,7 @@
 import 'package:arthurs_compendium_of_magic/models/spellcaster_model.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SpellcastersBodyCarousel extends StatelessWidget {
   const SpellcastersBodyCarousel({
@@ -58,6 +59,14 @@ class SpellcastersBodyCarousel extends StatelessWidget {
                         height: 200.0,
                         image: spellcaster.spellcasterThumbnail,
                       ),
+                    ),
+                  ),
+                  Center(
+                    child: ElevatedButton(
+                      child: const FaIcon(FontAwesomeIcons.bookSkull, size: 19.0,),
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'spellbook');
+                      },
                     ),
                   ),
                 ],
