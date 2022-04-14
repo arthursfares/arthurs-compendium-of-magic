@@ -1,5 +1,7 @@
 import 'package:arthurs_compendium_of_magic/screens/components/fab_menu.dart';
-import 'package:arthurs_compendium_of_magic/screens/spellcasters/components/spellcasters_body.dart';
+import 'package:arthurs_compendium_of_magic/screens/spellcasters/components/spellcasters_body_carousel.dart';
+import 'package:arthurs_compendium_of_magic/screens/spellcasters/components/spellcasters_body_list.dart';
+import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -11,16 +13,24 @@ class SpellcastersScreen extends StatefulWidget {
 }
 
 class _SpellcastersScreenState extends State<SpellcastersScreen> {
+  final List<bool> viewsToggleList = [true, false];
+
   final List<String> names = <String>[
     'Larry Bird',
     'Victor',
     'Tim',
+    'Nic Cage',
+    'Euler',
+    'Mordenkainen',
   ];
 
   final List<String> images = <String>[
     'assets/images/larry-bird.png',
     'assets/images/victor.png',
     'assets/images/tim.png',
+    'assets/images/nic-cage.png',
+    'assets/images/euler.png',
+    'assets/images/mordenkainen.png',
   ];
 
   TextEditingController nameController = TextEditingController();
@@ -29,7 +39,7 @@ class _SpellcastersScreenState extends State<SpellcastersScreen> {
     setState(() {
       // names.insert(0, nameController.text);
       names.insert(names.length, nameController.text);
-      images.insert(images.length, 'assets/images/mordenkainen.png');
+      images.insert(images.length, 'assets/images/anime-hamster.png');
     });
   }
 
@@ -88,18 +98,40 @@ class _SpellcastersScreenState extends State<SpellcastersScreen> {
       appBar: AppBar(
         title: const Text('Spellcasters'),
         actions: [
+          ToggleButtons(
+            children: const <Widget>[
+              Icon(CommunityMaterialIcons.view_list),
+              Icon(CommunityMaterialIcons.view_carousel),
+            ],
+            onPressed: (int index) {
+              setState(() {
+                for (int buttonIndex = 0;
+                    buttonIndex < viewsToggleList.length;
+                    buttonIndex++) {
+                  if (buttonIndex == index) {
+                    viewsToggleList[buttonIndex] = true;
+                  } else {
+                    viewsToggleList[buttonIndex] = false;
+                  }
+                }
+              });
+            },
+            isSelected: viewsToggleList,
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: IconButton(
               icon: const FaIcon(FontAwesomeIcons.plus),
-              onPressed: (){
+              onPressed: () {
                 _displayTextInputDialog(context);
               },
             ),
           ),
         ],
       ),
-      body: SpellcastersBody(names: names, images: images),
+      body: viewsToggleList[0]
+          ? SpellcastersBodyList(names: names, images: images)
+          : SpellcastersBodyCarousel(names: names, images: images),
       floatingActionButton: const FabMenu(),
     );
   }
