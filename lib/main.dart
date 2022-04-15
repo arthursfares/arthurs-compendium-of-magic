@@ -14,13 +14,13 @@ void main() {
       theme: ThemeData.dark(),
       initialRoute: 'login',
       routes: {
-        'login':          (context) => const LoginScreen(),
-        'signup':         (context) => const SignupScreen(),
-        'spellcasters':   (context) => const SpellcastersScreen(),
-        'spellbook':      (context) => const SpellbookScreen(),
-        'add_spell':      (context) => const SpellbookAddScreen(),
-        'about':          (context) => const AboutScreen(),
-        'settings':       (context) => const SettingsScreen(),
+        'login':              (context) => const LoginScreen(),
+        'signup':             (context) => const SignupScreen(),
+        'spellcasters':       (context) => const SpellcastersScreen(),
+        'spellbook':          (context) => const SpellbookScreen(),
+        'spellbook-add':      (context) => const SpellbookAddScreen(),
+        'about':              (context) => const AboutScreen(),
+        'settings':           (context) => const SettingsScreen(),
       },
     )
   );
