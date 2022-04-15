@@ -1,4 +1,5 @@
 import 'package:arthurs_compendium_of_magic/models/spell_token.dart';
+import 'package:arthurs_compendium_of_magic/screens/spellbook-description/spellbook_description_screen.dart';
 import 'package:flutter/material.dart';
 
 class SpellbookBody extends StatelessWidget {
@@ -30,7 +31,13 @@ class SpellbookBody extends StatelessWidget {
                   child: ListTile(
                     title: Text(spells[index].name),
                     onTap: () {
-                      // show spell description screen
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SpellbookDescriptionScreen(
+                              spellIndex: spells[index].indexName),
+                        ),
+                      );
                     },
                   ),
                 );
