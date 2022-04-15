@@ -27,8 +27,8 @@ class SpellcastersBodyList extends StatelessWidget {
               itemCount: spellcasters.length,
               itemBuilder: (BuildContext context, int index) {
                 return SpellcasterListCard(
-                  spellcasterName: spellcasters[index].spellcasterName,
-                  image: spellcasters[index].spellcasterThumbnail,
+                  spellcasterName: spellcasters[index].name,
+                  image: spellcasters[index].thumbnail,
                 );
               },
             ),

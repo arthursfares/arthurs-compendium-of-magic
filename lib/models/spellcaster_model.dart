@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
 class SpellcasterModel {
-  late String _spellcasterName;
+  late String _name;
+  late AssetImage _thumbnail;
   // late Map<String, int> _spellcasterClassMap;
-  late AssetImage _spellcasterThumbnail;
 
   SpellcasterModel(
     spellcasterName,
-    // spellcasterClassMap,
     spellcasterThumbnail,
+    // spellcasterClassMap,
   ) {
-    _spellcasterName = spellcasterName;
-    _spellcasterThumbnail = spellcasterThumbnail;
+    _name = spellcasterName;
+    _thumbnail = spellcasterThumbnail;
   }
 
-  String get spellcasterName => _spellcasterName;
+  String get name => _name;
+  AssetImage get thumbnail => _thumbnail;
   // Map<String, int> get spellcasterClassMap => _spellcasterClassMap;
-  AssetImage get spellcasterThumbnail => _spellcasterThumbnail;
 }

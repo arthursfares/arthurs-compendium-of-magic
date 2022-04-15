@@ -41,7 +41,7 @@ class SpellcastersBodyCarousel extends StatelessWidget {
                           margin: const EdgeInsets.symmetric(vertical: 90.0),
                           alignment: FractionalOffset.center,
                           child: Text(
-                            spellcaster.spellcasterName,
+                            spellcaster.name,
                             style: const TextStyle(
                               fontSize: 33.0,
                               fontWeight: FontWeight.w800,
@@ -57,7 +57,7 @@ class SpellcastersBodyCarousel extends StatelessWidget {
                       child: Image(
                         width: 200.0,
                         height: 200.0,
-                        image: spellcaster.spellcasterThumbnail,
+                        image: spellcaster.thumbnail,
                       ),
                     ),
                   ),
@@ -65,7 +65,7 @@ class SpellcastersBodyCarousel extends StatelessWidget {
                     child: ElevatedButton(
                       child: const FaIcon(FontAwesomeIcons.bookSkull, size: 19.0,),
                       onPressed: () {
-                        Navigator.pushNamed(context, 'spellbook', arguments: spellcaster.spellcasterName);
+                        Navigator.pushNamed(context, 'spellbook', arguments: spellcaster.name);
                       },
                     ),
                   ),
