@@ -4,14 +4,14 @@ import 'package:arthurs_compendium_of_magic/models/spell_token.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
-class AddSpellBody extends StatefulWidget {
-  const AddSpellBody({Key? key}) : super(key: key);
+class SpellbookAddBody extends StatefulWidget {
+  const SpellbookAddBody({Key? key}) : super(key: key);
 
   @override
-  State<AddSpellBody> createState() => _AddSpellBodyState();
+  State<SpellbookAddBody> createState() => _SpellbookAddBodyState();
 }
 
-class _AddSpellBodyState extends State<AddSpellBody> {
+class _SpellbookAddBodyState extends State<SpellbookAddBody> {
   Client client = Client();
   List<SpellToken> spellList = [];
 
