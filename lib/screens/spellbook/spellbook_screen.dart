@@ -1,4 +1,4 @@
-import 'package:arthurs_compendium_of_magic/models/spell_token.dart';
+import 'package:arthurs_compendium_of_magic/models/spell_token_model.dart';
 import 'package:arthurs_compendium_of_magic/screens/components/fab_menu.dart';
 import 'package:arthurs_compendium_of_magic/screens/spellbook/components/spellbook_body.dart';
 import 'package:flutter/material.dart';
@@ -12,9 +12,9 @@ class SpellbookScreen extends StatefulWidget {
 }
 
 class _SpellbookScreenState extends State<SpellbookScreen> {
-  List<SpellToken> spells = [];
+  List<SpellTokenModel> spells = [];
 
-  addSpellToList(SpellToken spell) {
+  addSpellToList(SpellTokenModel spell) {
     setState(() {
       spells.insert(spells.length, spell);
     });
@@ -38,7 +38,7 @@ class _SpellbookScreenState extends State<SpellbookScreen> {
               onPressed: () async {
                 Navigator.pushNamed(context, 'spellbook-add').then(
                     (selectedSpell) =>
-                        addSpellToList(selectedSpell as SpellToken));
+                        addSpellToList(selectedSpell as SpellTokenModel));
               },
             ),
           ),

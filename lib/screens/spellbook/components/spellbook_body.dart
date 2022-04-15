@@ -1,4 +1,4 @@
-import 'package:arthurs_compendium_of_magic/models/spell_token.dart';
+import 'package:arthurs_compendium_of_magic/models/spell_token_model.dart';
 import 'package:arthurs_compendium_of_magic/screens/spellbook-description/spellbook_description_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +8,7 @@ class SpellbookBody extends StatelessWidget {
     required this.spells,
   }) : super(key: key);
 
-  final List<SpellToken> spells;
+  final List<SpellTokenModel> spells;
 
   @override
   Widget build(BuildContext context) {

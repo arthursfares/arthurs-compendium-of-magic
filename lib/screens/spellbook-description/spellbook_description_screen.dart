@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:arthurs_compendium_of_magic/models/spell.dart';
+import 'package:arthurs_compendium_of_magic/models/spell_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:http/http.dart';
@@ -21,7 +21,7 @@ class SpellbookDescriptionScreen extends StatefulWidget {
 class _SpellbookDescriptionScreenState
     extends State<SpellbookDescriptionScreen> {
   Client client = Client();
-  late Spell spell;
+  late SpellModel spell;
 
   loadSpellJson(String spellIndex) async {
     final response = await client
@@ -29,7 +29,7 @@ class _SpellbookDescriptionScreenState
     if (response.statusCode == 200) {
       final dynamic decodedResponse = await json.decode(response.body);
       setState(() {
-        spell = Spell.fromJson(decodedResponse);
+        spell = SpellModel.fromJson(decodedResponse);
       });
     } else {
       throw Exception('Failed to load spell');

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:arthurs_compendium_of_magic/models/spell_token.dart';
+import 'package:arthurs_compendium_of_magic/models/spell_token_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
@@ -13,7 +13,7 @@ class SpellbookAddBody extends StatefulWidget {
 
 class _SpellbookAddBodyState extends State<SpellbookAddBody> {
   Client client = Client();
-  List<SpellToken> spellList = [];
+  List<SpellTokenModel> spellList = [];
 
   loadTokensJson() async {
     final response =
@@ -22,7 +22,7 @@ class _SpellbookAddBodyState extends State<SpellbookAddBody> {
       final dynamic decodedResponse = await json.decode(response.body);
       setState(() {
         decodedResponse['results'].forEach((item) {
-          spellList.add(SpellToken.fromJson(item));
+          spellList.add(SpellTokenModel.fromJson(item));
         });
       });
     } else {
