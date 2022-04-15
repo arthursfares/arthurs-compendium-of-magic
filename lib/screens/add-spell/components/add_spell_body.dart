@@ -50,8 +50,6 @@ class _AddSpellBodyState extends State<AddSpellBody> {
             child: ListTile(
               title: Text(spellList[index].name),
               onTap: () async {
-                // TODO: save selected token in data file to be accessed by 
-                // spellbook body.
                 Navigator.pop(context);
               },
             ),
