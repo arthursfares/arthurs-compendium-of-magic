@@ -17,72 +17,34 @@ class _SpellcastersScreenState extends State<SpellcastersScreen> {
   final List<bool> viewsToggleList = [true, false];
   List<SpellcasterModel> spellcasters = <SpellcasterModel>[];
 
-  TextEditingController nameController = TextEditingController();
-
   @override
   void initState() {
     super.initState();
-    spellcasters.insert(spellcasters.length, SpellcasterModel('Larry Bird', const AssetImage('assets/images/larry-bird.png')));
-    spellcasters.insert(spellcasters.length, SpellcasterModel('Victor', const AssetImage('assets/images/victor.png')));
-    spellcasters.insert(spellcasters.length, SpellcasterModel('Tim', const AssetImage('assets/images/tim.png')));
-    spellcasters.insert(spellcasters.length, SpellcasterModel('Nic Cage', const AssetImage('assets/images/nic-cage.png')));
-    spellcasters.insert(spellcasters.length, SpellcasterModel('Euler', const AssetImage('assets/images/euler.png')));
+    spellcasters.insert(
+        spellcasters.length,
+        SpellcasterModel(
+            'Larry Bird', const AssetImage('assets/images/larry-bird.png')));
+    spellcasters.insert(
+        spellcasters.length,
+        SpellcasterModel(
+            'Victor', const AssetImage('assets/images/victor.png')));
+    spellcasters.insert(spellcasters.length,
+        SpellcasterModel('Tim', const AssetImage('assets/images/tim.png')));
+    spellcasters.insert(
+        spellcasters.length,
+        SpellcasterModel(
+            'Nic Cage', const AssetImage('assets/images/nic-cage.png')));
+    spellcasters.insert(spellcasters.length,
+        SpellcasterModel('Euler', const AssetImage('assets/images/euler.png')));
   }
 
-
-  void addItemToList() {
+  void addSpellcasterToList(String spellcasterName) {
     setState(() {
-      spellcasters.insert(spellcasters.length, SpellcasterModel(nameController.text, const AssetImage('assets/images/anime-hamster.png')));
+      spellcasters.insert(
+          spellcasters.length,
+          SpellcasterModel(spellcasterName,
+              const AssetImage('assets/images/anime-hamster.png')));
     });
-  }
-
-  Future<void> _displayTextInputDialog(BuildContext context) async {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: const Text('Name'),
-            content: TextField(
-              controller: nameController,
-              decoration: const InputDecoration(
-                  hintText: "TODO: random mage name generator"),
-            ),
-            actions: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: ElevatedButton(
-                  child: const Text('CANCEL'),
-                  onPressed: () {
-                    setState(() {
-                      Navigator.pop(context);
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.red[800], // background
-                    onPrimary: Colors.white, // foreground
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: ElevatedButton(
-                  child: const Text('ADD'),
-                  onPressed: () {
-                    setState(() {
-                      addItemToList();
-                      nameController.clear();
-                      Navigator.pop(context);
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.green[700], // background
-                    onPrimary: Colors.white, // foreground
-                  ),
-                ),
-              ),
-            ],
-          );
-        });
   }
 
   @override
@@ -115,8 +77,11 @@ class _SpellcastersScreenState extends State<SpellcastersScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: IconButton(
               icon: const FaIcon(FontAwesomeIcons.plus),
-              onPressed: () {
-                _displayTextInputDialog(context);
+              onPressed: () async {
+                Navigator.pushNamed(context, 'spellcasters-add').then(
+                  (newSpellcasterName) =>
+                      addSpellcasterToList(newSpellcasterName as String),
+                );
               },
             ),
           ),
