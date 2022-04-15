@@ -32,7 +32,7 @@ class _SpellcastersScreenState extends State<SpellcastersScreen> {
 
   void addItemToList() {
     setState(() {
-      spellcasters.insert(spellcasters.length, SpellcasterModel(nameController.text, 'assets/images/anime-hamster.png'));
+      spellcasters.insert(spellcasters.length, SpellcasterModel(nameController.text, const AssetImage('assets/images/anime-hamster.png')));
     });
   }
 
