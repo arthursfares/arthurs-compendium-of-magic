@@ -8,9 +8,13 @@ class SpellbookScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String spellcasterName = ModalRoute.of(context)!.settings.arguments as String;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Spellbook'),
+        title: spellcasterName.characters.last != 's' 
+              ? Text('$spellcasterName\'s Spellbook')
+              : Text('$spellcasterName\' Spellbook'),
         actions: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),

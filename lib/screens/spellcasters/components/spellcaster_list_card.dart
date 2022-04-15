@@ -71,7 +71,7 @@ class CardContent extends StatelessWidget {
               size: 19.0,
             ),
             onPressed: () {
-              Navigator.pushNamed(context, 'spellbook');
+              Navigator.pushNamed(context, 'spellbook', arguments: spellcasterName);
             },
           ),
         ],

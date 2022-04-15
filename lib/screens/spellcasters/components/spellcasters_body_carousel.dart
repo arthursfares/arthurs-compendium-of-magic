@@ -65,7 +65,7 @@ class SpellcastersBodyCarousel extends StatelessWidget {
                     child: ElevatedButton(
                       child: const FaIcon(FontAwesomeIcons.bookSkull, size: 19.0,),
                       onPressed: () {
-                        Navigator.pushNamed(context, 'spellbook');
+                        Navigator.pushNamed(context, 'spellbook', arguments: spellcaster.spellcasterName);
                       },
                     ),
                   ),
