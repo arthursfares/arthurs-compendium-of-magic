@@ -6,12 +6,10 @@ class SpellcasterListCard extends StatelessWidget {
     Key? key,
     required this.spellcasterName,
     required this.image,
-    required this.isCardSelected,
   }) : super(key: key);
 
   final String spellcasterName;
   final AssetImage image;
-  final bool isCardSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +23,6 @@ class SpellcasterListCard extends StatelessWidget {
           children: <Widget>[
             Card(
               spellcasterName: spellcasterName,
-              isCardSelected: isCardSelected,
             ),
             Thumbnail(image: image),
           ],
@@ -71,7 +68,8 @@ class CardContent extends StatelessWidget {
               size: 19.0,
             ),
             onPressed: () {
-              Navigator.pushNamed(context, 'spellbook', arguments: spellcasterName);
+              Navigator.pushNamed(context, 'spellbook',
+                  arguments: spellcasterName);
             },
           ),
         ],
@@ -84,11 +82,9 @@ class Card extends StatelessWidget {
   const Card({
     Key? key,
     required this.spellcasterName,
-    required this.isCardSelected,
   }) : super(key: key);
 
   final String spellcasterName;
-  final bool isCardSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -99,26 +95,13 @@ class Card extends StatelessWidget {
         color: const Color(0xFF333366),
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.circular(8.0),
-        boxShadow: isCardSelected
-            ? const <BoxShadow>[
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 10.0,
-                  offset: Offset(0.0, 10.0),
-                ),
-                BoxShadow(
-                  color: Color.fromARGB(130, 237, 125, 58),
-                  blurRadius: 15,
-                  spreadRadius: 15,
-                ),
-              ]
-            : const <BoxShadow>[
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 10.0,
-                  offset: Offset(0.0, 10.0),
-                ),
-              ],
+        boxShadow: const <BoxShadow>[
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 10.0,
+            offset: Offset(0.0, 10.0),
+          ),
+        ],
       ),
       child: CardContent(spellcasterName: spellcasterName),
     );
