@@ -1,15 +1,13 @@
 import 'package:arthurs_compendium_of_magic/models/spell_token.dart';
 import 'package:flutter/material.dart';
 
-class SpellbookBody extends StatefulWidget {
-  const SpellbookBody({Key? key}) : super(key: key);
+class SpellbookBody extends StatelessWidget {
+  const SpellbookBody({
+    Key? key,
+    required this.spells,
+  }) : super(key: key);
 
-  @override
-  State<SpellbookBody> createState() => _SpellbookBodyState();
-}
-
-class _SpellbookBodyState extends State<SpellbookBody> {
-  List<SpellToken> spells = [];
+  final List<SpellToken> spells;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +29,7 @@ class _SpellbookBodyState extends State<SpellbookBody> {
                   padding: const EdgeInsets.all(8.0),
                   child: ListTile(
                     title: Text(spells[index].name),
-                    onTap: () { 
+                    onTap: () {
                       // show spell description screen
                     },
                   ),
