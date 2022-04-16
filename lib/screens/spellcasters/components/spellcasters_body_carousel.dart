@@ -18,6 +18,7 @@ class SpellcastersBodyCarousel extends StatelessWidget {
     return Center(
       child: CarouselSlider(
         options: CarouselOptions(
+          enableInfiniteScroll: false,
           height: size.height * 0.7,
           enlargeCenterPage: true,
         ),
