@@ -69,9 +69,12 @@ class _SpellbookDescriptionScreenState
 
   Widget buildDescParagraph(List<dynamic> descList) {
     int initTableIndex = -1;
+    List<int> tablesStartIndex = [];
+
     for (int i = 0; i < descList.length; i++) {
       if (descList[i].toString()[0] == '|') {
         initTableIndex = i;
+        tablesStartIndex.add(initTableIndex);
         if (initTableIndex != -1) {
           for (int i = initTableIndex + 1; i < descList.length; i++) {
             if (descList[i].toString().startsWith('|')) {
@@ -93,7 +96,7 @@ class _SpellbookDescriptionScreenState
         mainAxisAlignment: MainAxisAlignment.center,
         children: descList
             .map(
-              (item) => descList.indexOf(item) != 3
+              (item) => !tablesStartIndex.contains(descList.indexOf(item))
                   ? Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: MarkdownBody(data: item),
