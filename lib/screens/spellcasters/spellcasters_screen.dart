@@ -14,7 +14,7 @@ class SpellcastersScreen extends StatefulWidget {
 }
 
 class _SpellcastersScreenState extends State<SpellcastersScreen> {
-  final List<bool> viewsToggleList = [true, false];
+  final List<bool> viewsToggleList = [false, true];
   List<SpellcasterModel> spellcasters = <SpellcasterModel>[];
 
   @override
@@ -26,7 +26,7 @@ class _SpellcastersScreenState extends State<SpellcastersScreen> {
       const AssetImage('assets/images/nic-cage.png'),
       'Wizard',
       9,
-      'I\'m going to steal the Declaration of Independence',
+      '" I\'m going to steal the Declaration of Independence "',
     ));
   }
 
