@@ -6,10 +6,14 @@ class SpellcasterListCard extends StatelessWidget {
     Key? key,
     required this.spellcasterName,
     required this.image,
+    required this.dndClass,
+    required this.level,
   }) : super(key: key);
 
   final String spellcasterName;
   final AssetImage image;
+  final String dndClass;
+  final int level;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +27,8 @@ class SpellcasterListCard extends StatelessWidget {
           children: <Widget>[
             Card(
               spellcasterName: spellcasterName,
+              dndClass: dndClass,
+              level: level,
             ),
             Thumbnail(image: image),
           ],
@@ -34,9 +40,13 @@ class CardContent extends StatelessWidget {
   CardContent({
     Key? key,
     required this.spellcasterName,
+    required this.dndClass,
+    required this.level,
   }) : super(key: key);
 
   final String spellcasterName;
+  final String dndClass;
+  final int level;
 
   final TextStyle headerTextStyle = const TextStyle(fontFamily: 'Poppins')
       .copyWith(
@@ -44,6 +54,8 @@ class CardContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var radius = const Radius.circular(8.0);
+
     return Container(
       margin: const EdgeInsets.fromLTRB(76.0 + 46.0 + 16.0, 16.0, 16.0, 16.0),
       constraints: const BoxConstraints.expand(),
@@ -55,22 +67,28 @@ class CardContent extends StatelessWidget {
             spellcasterName,
             style: headerTextStyle,
           ),
-          Container(height: 10.0),
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 8.0),
-            height: 2.0,
-            width: 18.0,
-            color: const Color(0xff00c6ff),
-          ),
-          ElevatedButton(
-            child: const FaIcon(
-              FontAwesomeIcons.bookSkull,
-              size: 19.0,
-            ),
-            onPressed: () {
-              Navigator.pushNamed(context, 'spellbook',
-                  arguments: spellcasterName);
-            },
+          Container(height: 12.0),
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  color: Colors.amberAccent[700],
+                  borderRadius:
+                      BorderRadius.only(bottomLeft: radius, topLeft: radius),
+                ),
+                child: Text(dndClass),
+              ),
+              Container(
+                padding: const EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  color: Colors.purpleAccent,
+                  borderRadius:
+                      BorderRadius.only(bottomRight: radius, topRight: radius),
+                ),
+                child: Text('$level'),
+              ),
+            ],
           ),
         ],
       ),
@@ -82,9 +100,13 @@ class Card extends StatelessWidget {
   const Card({
     Key? key,
     required this.spellcasterName,
+    required this.dndClass,
+    required this.level,
   }) : super(key: key);
 
   final String spellcasterName;
+  final String dndClass;
+  final int level;
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +125,11 @@ class Card extends StatelessWidget {
           ),
         ],
       ),
-      child: CardContent(spellcasterName: spellcasterName),
+      child: CardContent(
+        spellcasterName: spellcasterName,
+        dndClass: dndClass,
+        level: level,
+      ),
     );
   }
 }

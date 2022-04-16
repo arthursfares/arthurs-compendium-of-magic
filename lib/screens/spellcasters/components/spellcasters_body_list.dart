@@ -26,9 +26,17 @@ class SpellcastersBodyList extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               itemCount: spellcasters.length,
               itemBuilder: (BuildContext context, int index) {
-                return SpellcasterListCard(
-                  spellcasterName: spellcasters[index].name,
-                  image: spellcasters[index].thumbnail,
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, 'spellbook',
+                    arguments: spellcasters[index].name);
+                  },
+                  child: SpellcasterListCard(
+                    spellcasterName: spellcasters[index].name,
+                    image: spellcasters[index].thumbnail,
+                    dndClass: spellcasters[index].dndClass,
+                    level: spellcasters[index].level,
+                  ),
                 );
               },
             ),
