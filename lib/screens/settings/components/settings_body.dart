@@ -5,8 +5,13 @@ class SettingsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return Center(
+      child: ElevatedButton(
+        child: const Text('Log out'),
+        onPressed: () {
+          Navigator.pushReplacementNamed(context, 'login');
+        },
+      ),
     );
   }
 }
