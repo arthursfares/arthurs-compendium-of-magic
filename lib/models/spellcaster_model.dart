@@ -21,8 +21,26 @@ class SpellcasterModel {
     _description = spellcasterDescription;
   }
 
-  String get name => _name;
-  AssetImage get thumbnail => _thumbnail;
+  factory SpellcasterModel.fromJson(Map<String, dynamic> json) {
+    return SpellcasterModel(
+      json['name'],
+      json['thumbnail'],
+      json['class'],
+      json['level'],
+      json['description'],
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'name': _name,
+    'thumbnail': _thumbnail,
+    'class': _dndClass,
+    'level': _level,
+    'description': _description,
+  };
+
+  String      get name          => _name;
+  AssetImage  get thumbnail     => _thumbnail;
   String      get dndClass      => _dndClass;
   int         get level         => _level;
   String      get description   => _description;
