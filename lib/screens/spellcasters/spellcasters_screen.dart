@@ -20,23 +20,26 @@ class _SpellcastersScreenState extends State<SpellcastersScreen> {
   @override
   void initState() {
     super.initState();
-    
+
     spellcasters.add(SpellcasterModel(
       'Nic Cage',
       const AssetImage('assets/images/nic-cage.png'),
       'Wizard',
       9,
-      '" I\'m going to steal the Declaration of Independence "',
+      'I\'m going to steal the Declaration of Independence',
     ));
   }
 
   void addSpellcasterToList(String spellcasterName) {
-    // setState(() {
-    //   spellcasters.insert(
-    //       spellcasters.length,
-    //       SpellcasterModel(spellcasterName,
-    //           const AssetImage('assets/images/anime-hamster.png')));
-    // });
+    setState(() {
+      spellcasters.add(SpellcasterModel(
+        spellcasterName,
+        const AssetImage('assets/images/ken-thompson.png'),
+        'Wizard',
+        20,
+        'Mages don\'t wear pants',
+      ));
+    });
   }
 
   @override
