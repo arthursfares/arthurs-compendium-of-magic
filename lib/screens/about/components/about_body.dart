@@ -5,8 +5,17 @@ class AboutBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Text('Fotinha aqui :)'),
+          SizedBox(height: 20.0),
+          Text('Arthur Scorsolini Fares'),
+          Text('832447'),
+          Text('Made with 💙 and ☕.'),
+        ],
+      ),
     );
   }
 }
