@@ -9,7 +9,8 @@ class AboutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('About'),
+        elevation: 0.0, // removes shadow
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body: const AboutBody(),
       floatingActionButton: const FabMenu(),

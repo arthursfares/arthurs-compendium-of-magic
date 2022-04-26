@@ -9,7 +9,8 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        elevation: 0.0, // removes shadow
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body: const SettingsBody(),
       floatingActionButton: const FabMenu(),
