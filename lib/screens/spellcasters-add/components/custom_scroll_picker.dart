@@ -50,7 +50,7 @@ class _ScrollPickerState<T> extends State<ScrollPicker<T>> {
     final ThemeData themeData = Theme.of(context);
     TextStyle? defaultStyle = themeData.textTheme.bodyText2;
     TextStyle? selectedStyle = themeData.textTheme.headline5
-        ?.copyWith(color: Colors.purpleAccent);
+        ?.copyWith(color: const Color.fromARGB(212, 146, 84, 200));
 
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
@@ -91,9 +91,9 @@ class _ScrollPickerState<T> extends State<ScrollPicker<T>> {
                 decoration: const BoxDecoration(
                   border: Border(
                     top: BorderSide(
-                        color: Colors.purpleAccent, width: 1.0),
+                        color: Color.fromARGB(212, 146, 84, 200), width: 1.0),
                     bottom: BorderSide(
-                        color: Colors.purpleAccent, width: 1.0),
+                        color: Color.fromARGB(212, 146, 84, 200), width: 1.0),
                   ),
                 ),
               ),
