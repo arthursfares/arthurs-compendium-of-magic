@@ -37,7 +37,7 @@ class SettingsBody extends StatelessWidget {
         const SizedBox(height: 30.0),
         Center(
           child: LogoutButton(
-            text: 'Log out  👻',
+            text: 'Log out',
             press: () {
               Navigator.pushReplacementNamed(context, 'login');
             },
