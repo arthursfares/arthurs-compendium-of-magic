@@ -26,9 +26,10 @@ class _FabMenuState extends State<FabMenu> {
       },
       child: SpeedDial(
         icon: FontAwesomeIcons.skull,
+        iconTheme: const IconThemeData(color: Colors.white),
         activeIcon: FontAwesomeIcons.xmark,
         openCloseDial: isDialOpen,
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.purpleAccent.shade700,
         overlayColor: Colors.grey,
         overlayOpacity: 0.5,
         spacing: 15,
