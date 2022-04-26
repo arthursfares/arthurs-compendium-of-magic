@@ -1,10 +1,12 @@
 import 'dart:io';
 
+import 'package:arthurs_compendium_of_magic/screens/components/outline_border_input_field.dart';
+import 'package:arthurs_compendium_of_magic/screens/spellcasters-add/components/custom_scroll_picker.dart';
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:numberpicker/numberpicker.dart';
 
 class SpellcastersAddScreen extends StatefulWidget {
   const SpellcastersAddScreen({Key? key}) : super(key: key);
@@ -14,10 +16,13 @@ class SpellcastersAddScreen extends StatefulWidget {
 }
 
 class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
-  final textFieldController = TextEditingController();
-  File? image = File("assets/images/euler.png");
-  // PickedFile _imageFile = PickedFile("assets/images/euler.png");
-  // final ImagePicker _picker = ImagePicker();
+  TextEditingController nameTextController = TextEditingController();
+  TextEditingController descriptionTextController = TextEditingController();
+  File? image = File('assets/images/euler.png');
+  String _class = 'Wizard';
+  int _level = 1;
+  String _description = '';
+  bool isNameEmpty = true;
 
   /// Open image gallery and pick an image
   Future<XFile?> pickImageFromGallery() async {
@@ -41,22 +46,16 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
     );
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    textFieldController.dispose();
-  }
-
-  Widget imageProfile() {
+  Widget imageProfile(Size contextSize) {
     return Center(
       child: Stack(children: <Widget>[
         CircleAvatar(
-          radius: 80.0,
+          radius: 100.0,
           backgroundImage: FileImage(image!),
         ),
         Positioned(
-          bottom: 20.0,
-          right: 20.0,
+          bottom: 28.0,
+          right: contextSize.width / 4 - 11.5,
           child: InkWell(
             onTap: () async {
               // Step #1: Pick Image From Gallery.
@@ -77,9 +76,10 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
               });
             },
             child: const Icon(
-              Icons.camera_alt,
-              color: Colors.teal,
-              size: 28.0,
+              // CommunityMaterialIcons.crystal_ball,
+              CommunityMaterialIcons.image_search,
+              color: Colors.purpleAccent,
+              size: 33.0,
             ),
           ),
         ),
@@ -87,57 +87,23 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
     );
   }
 
-  // Widget bottomSheet() {
-  //   return Container(
-  //     height: 100.0,
-  //     width: MediaQuery.of(context).size.width,
-  //     margin: const EdgeInsets.symmetric(
-  //       horizontal: 20,
-  //       vertical: 20,
-  //     ),
-  //     child: Column(
-  //       children: <Widget>[
-  //         const Text(
-  //           "Choose Profile photo",
-  //           style: TextStyle(
-  //             fontSize: 20.0,
-  //           ),
-  //         ),
-  //         const SizedBox(
-  //           height: 20,
-  //         ),
-  //         Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-  //           TextButton.icon(
-  //             icon: const Icon(Icons.camera),
-  //             onPressed: () {
-  //               takePhoto(ImageSource.camera);
-  //             },
-  //             label: const Text("Camera"),
-  //           ),
-  //           TextButton.icon(
-  //             icon: const Icon(Icons.image),
-  //             onPressed: () {
-  //               takePhoto(ImageSource.gallery);
-  //             },
-  //             label: const Text("Gallery"),
-  //           ),
-  //         ])
-  //       ],
-  //     ),
-  //   );
-  // }
+  @override
+  void initState() {
+    super.initState();
+    descriptionTextController.text = _description;
+  }
 
-  // void takePhoto(ImageSource source) async {
-  //   final pickedFile = await _picker.pickImage(source: source);
-  //   setState(() {
-  //     _imageFile = pickedFile as PickedFile;
-  //   });
-  // }
+  @override
+  void dispose() {
+    super.dispose();
+    nameTextController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    int _currentLevel = 1;
-    String dropdownValue = 'Wizard';
+    Size size = MediaQuery.of(context).size;
+    List<int> dndLevels =
+        List.generate(20, (index) => index + 1, growable: false);
     List<String> dndClasses = [
       'Wizard',
       'Warlock',
@@ -156,82 +122,185 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('New spellcaster'),
-      ),
-      body: Column(
-        children: [
-          // THUMBNAIL
-          imageProfile(),
-
-          // NAME
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: TextField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                ),
-                controller: textFieldController,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: IconButton(
+              disabledColor: Colors.grey,
+              icon: Icon(
+                Icons.check,
+                color: isNameEmpty ? null : Colors.purpleAccent,
               ),
+              onPressed: isNameEmpty
+                  ? () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return const AlertDialog(
+                            title: Text('Names are important'),
+                          );
+                        },
+                      );
+                    }
+                  : () async {
+                      // TODO: add new spellcaster to list
+                      // for now it only adds the default one
+                      Navigator.pop(context, nameTextController.text);
+                    },
             ),
           ),
-
-          // CLASS
-          DropdownButton<String>(
-            value: dropdownValue,
-            icon: const Icon(Icons.arrow_downward),
-            elevation: 16,
-            style: const TextStyle(color: Colors.deepPurple),
-            underline: Container(
-              height: 2,
-              color: Colors.deepPurpleAccent,
-            ),
-            onChanged: (String? newValue) {
-              setState(() {
-                dropdownValue = newValue!;
-              });
-            },
-            items: dndClasses.map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
-          ),
-
-          // LEVEL
-          NumberPicker(
-            axis: Axis.horizontal,
-            haptics: true,
-            value: _currentLevel,
-            minValue: 1,
-            maxValue: 20,
-            onChanged: (value) => setState(() => _currentLevel = value),
-          ),
-
-          //  DESCRIPTION
-          TextFormField(
-            minLines: 6,
-            keyboardType: TextInputType.multiline,
-            maxLines: null,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-            ),
-          )
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        tooltip: 'Done',
-        child: const Icon(CommunityMaterialIcons.brain),
-        onPressed: () {
-          // TODO: add new spellcaster to list
-          // for now it only adds the default one
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            backgroundColor: Colors.grey[200],
-            content: const Text('Spellcaster added successfully :)'),
-            duration: const Duration(seconds: 3),
-          ));
-          Navigator.pop(context, textFieldController.text);
-        },
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          const SizedBox(height: 50.0),
+          // THUMBNAIL
+          imageProfile(size),
+
+          // NAME
+          const SizedBox(height: 20.0),
+          Center(
+            child: OutlineBorderInputField(
+              labelText: 'Name',
+              icon: CommunityMaterialIcons.cupcake,
+              controller: nameTextController,
+              onChanged: (value) {
+                setState(() {
+                  isNameEmpty = nameTextController.text.isEmpty ? true : false;
+                });
+              },
+            ),
+          ),
+
+          // CLASS & LEVEL
+          const SizedBox(height: 20.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // CLASS
+              SizedBox(
+                height: 200,
+                width: 200,
+                child: ScrollPicker(
+                  items: dndClasses,
+                  selectedItem: 'Warlock',
+                  onChanged: (String value) {
+                    setState(() {
+                      _class = value;
+                    });
+                  },
+                ),
+              ),
+              // LEVEL
+              SizedBox(
+                height: 200,
+                width: 100,
+                child: ScrollPicker(
+                  items: dndLevels,
+                  selectedItem: 3,
+                  onChanged: (int value) {
+                    setState(() {
+                      _level = value;
+                    });
+                  },
+                ),
+              ),
+            ],
+          ),
+
+          // DESCRIPTION
+          const SizedBox(height: 20.0),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                primary: Colors.black12, //background color of button
+                elevation: 3, //elevation of button
+                shape: const CircleBorder(),
+                padding:
+                    const EdgeInsets.all(23) //content padding inside button
+                ),
+            child: const Padding(
+              padding: EdgeInsets.only(left: 4.0, top: 4.0),
+              child: FaIcon(
+                FontAwesomeIcons.scroll,
+                color: Colors.purpleAccent,
+                size: 23.0,
+              ),
+            ),
+            onPressed: () {
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (BuildContext context) {
+                  return Dialog(
+                    child: SizedBox(
+                      height: 400,
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text('Description'),
+                            const SizedBox(
+                              height: 20.0,
+                            ),
+                            Expanded(
+                              child: TextFormField(
+                                controller: descriptionTextController,
+                                minLines: 13,
+                                maxLines: null,
+                                keyboardType: TextInputType.multiline,
+                                scrollPadding: const EdgeInsets.all(20.0),
+                                autofocus: true,
+                                decoration: const InputDecoration(
+                                  hintText: "Fireball enthusiast 🔥🔥🔥",
+                                  border: OutlineInputBorder(),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  bottom: 16.0, top: 30.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        _description =
+                                            descriptionTextController.text;
+                                      });
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                        backgroundColor: Colors.grey[200],
+                                        content: const Text(
+                                            'Description saved successfully :)'),
+                                        duration: const Duration(seconds: 3),
+                                      ));
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text("Save"),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text("Discard changes"),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+        ],
       ),
     );
   }
