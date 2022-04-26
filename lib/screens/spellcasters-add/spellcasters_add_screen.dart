@@ -121,33 +121,33 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('New spellcaster'),
+        elevation: 0.0, // removes shadow
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: IconButton(
-              disabledColor: Colors.grey,
-              icon: Icon(
-                Icons.check,
-                color: isNameEmpty ? null : Colors.purpleAccent,
-              ),
-              onPressed: isNameEmpty
-                  ? () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return const AlertDialog(
-                            title: Text('Names are important'),
-                          );
-                        },
-                      );
-                    }
-                  : () async {
-                      // TODO: add new spellcaster to list
-                      // for now it only adds the default one
-                      Navigator.pop(context, nameTextController.text);
-                    },
+          IconButton(
+            padding: const EdgeInsets.only(right: 8),
+            iconSize: 30,
+            disabledColor: Colors.grey,
+            icon: Icon(
+              Icons.check,
+              color: isNameEmpty ? null : Colors.purpleAccent,
             ),
+            onPressed: isNameEmpty
+                ? () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return const AlertDialog(
+                          title: Text('Names are important'),
+                        );
+                      },
+                    );
+                  }
+                : () async {
+                    // TODO: add new spellcaster to list
+                    // for now it only adds the default one
+                    Navigator.pop(context, nameTextController.text);
+                  },
           ),
         ],
       ),
@@ -209,15 +209,17 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
             ],
           ),
 
+          
+
           // DESCRIPTION
           const SizedBox(height: 20.0),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-                primary: Colors.black12, //background color of button
+                primary: Colors.black38, //background color of button
                 elevation: 3, //elevation of button
                 shape: const CircleBorder(),
                 padding:
-                    const EdgeInsets.all(23) //content padding inside button
+                    const EdgeInsets.all(18) //content padding inside button
                 ),
             child: const Padding(
               padding: EdgeInsets.only(left: 4.0, top: 4.0),
