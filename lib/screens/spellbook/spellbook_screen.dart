@@ -27,9 +27,19 @@ class _SpellbookScreenState extends State<SpellbookScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: spellcasterName.characters.last != 's'
-            ? Text('$spellcasterName\'s Spellbook')
-            : Text('$spellcasterName\' Spellbook'),
+        elevation: 0.0, // removes shadow
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        // title: spellcasterName.characters.last != 's'
+        //     ? Text('$spellcasterName\'s Spellbook')
+        //     : Text('$spellcasterName\' Spellbook'),
+        centerTitle: true,
+        title: Text(spellcasterName),
+        titleTextStyle: const TextStyle(
+          color: Colors.white,
+          fontFamily: 'Space Quest',
+          letterSpacing: 1,
+          fontSize: 20,
+        ),
         actions: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),

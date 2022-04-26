@@ -8,7 +8,10 @@ class SpellbookAddScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Spell 🤓'),
+        elevation: 0.0, // removes shadow
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        centerTitle: true,
+        title: const Text('🤓'),
       ),
       body: const SpellbookAddBody(),
     );

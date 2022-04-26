@@ -44,15 +44,22 @@ class _SpellbookDescriptionScreenState
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(
+        elevation: 0.0, // removes shadow
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        centerTitle: true,
         title: Text(spell.name),
+        titleTextStyle: const TextStyle(
+          color: Colors.white,
+          fontFamily: 'Space Quest',
+          letterSpacing: 1,
+          fontSize: 20,
+        ),
       ),
       body: SizedBox(
         width: size.width,
@@ -64,8 +71,6 @@ class _SpellbookDescriptionScreenState
       ),
     );
   }
-
-
 
   Widget buildDescParagraph(List<dynamic> descList) {
     int initTableIndex = -1;
@@ -120,5 +125,4 @@ class _SpellbookDescriptionScreenState
       ),
     );
   }
-
 }
