@@ -64,28 +64,52 @@ class CardContent extends StatelessWidget {
           Container(height: 4.0),
           Text(
             spellcasterName,
-            style: headerTextStyle,
+            style: const TextStyle(
+              fontSize: 22.0,
+              fontFamily: 'Space Quest',
+              letterSpacing: 1,
+            ),
           ),
           Container(height: 12.0),
+          // CLASS AND LEVEL
           Row(
+            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                padding: const EdgeInsets.all(8.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
                 decoration: BoxDecoration(
                   color: Colors.amberAccent[700],
-                  borderRadius:
-                      BorderRadius.only(bottomLeft: radius, topLeft: radius),
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(8.0),
+                    topLeft: Radius.circular(8.0),
+                  ),
                 ),
-                child: Text(dndClass),
+                child: Text(
+                  dndClass,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
               Container(
-                padding: const EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                decoration: const BoxDecoration(
                   color: Colors.purpleAccent,
-                  borderRadius:
-                      BorderRadius.only(bottomRight: radius, topRight: radius),
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(8.0),
+                    topRight: Radius.circular(8.0),
+                  ),
                 ),
-                child: Text('$level'),
+                child: Text(
+                  '$level',
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ],
           ),
@@ -144,15 +168,12 @@ class Thumbnail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // margin: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
-      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+      margin: const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 16.0),
       alignment: FractionalOffset.centerLeft,
       child: ClipOval(
         child: Image(
           filterQuality: FilterQuality.high,
           image: image,
-          // height: 92.0,
-          // width: 92.0,
           height: 100.0,
           width: 100.0,
           fit: BoxFit.cover,
