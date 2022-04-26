@@ -12,7 +12,7 @@ void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
+      theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: const Color(0xFF191919)),
       initialRoute: 'login',
       routes: {
         'login':              (context) => const LoginScreen(),
