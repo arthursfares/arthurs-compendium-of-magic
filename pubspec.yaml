@@ -36,10 +36,8 @@ dependencies:
   carousel_slider: ^4.0.0
   image_picker: ^0.8.5
   image_cropper: ^1.5.1
-  numberpicker: ^2.1.1
   font_awesome_flutter: ^10.1.0
   community_material_icon: ^5.9.55
-
   firebase_core: ^0.4.0+9
 
   # The following adds the Cupertino Icons font to your application.
@@ -72,6 +70,7 @@ flutter:
   assets:
     - assets/gifs/
     - assets/images/
+    - assets/fonts/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -85,17 +84,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+  fonts:
+    - family: Space Quest
+      fonts:
+        - asset: assets/fonts/space-quest/SpaceQuest-yOY3.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
