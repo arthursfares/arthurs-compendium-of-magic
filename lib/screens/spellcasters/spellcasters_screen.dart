@@ -44,32 +44,42 @@ class _SpellcastersScreenState extends State<SpellcastersScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Spellcasters'),
+        elevation: 0.0, // removes shadow
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         actions: [
-          ToggleButtons(
-            children: const <Widget>[
-              Icon(CommunityMaterialIcons.view_list),
-              Icon(CommunityMaterialIcons.view_carousel),
-            ],
-            onPressed: (int index) {
-              setState(() {
-                for (int buttonIndex = 0;
-                    buttonIndex < viewsToggleList.length;
-                    buttonIndex++) {
-                  if (buttonIndex == index) {
-                    viewsToggleList[buttonIndex] = true;
-                  } else {
-                    viewsToggleList[buttonIndex] = false;
+          Padding(
+            padding: EdgeInsets.only(top: 8.0, bottom: 8.0, right: size.width/4),
+            child: ToggleButtons(
+              fillColor: Colors.purple.shade300.withOpacity(0),
+              selectedColor: Colors.purpleAccent.shade700,
+              color: Colors.grey.shade400,
+              renderBorder: false,
+              children: const <Widget>[
+                Icon(CommunityMaterialIcons.view_list, size: 33),
+                Icon(CommunityMaterialIcons.view_carousel, size: 33),
+              ],
+              onPressed: (int index) {
+                setState(() {
+                  for (int buttonIndex = 0;
+                      buttonIndex < viewsToggleList.length;
+                      buttonIndex++) {
+                    if (buttonIndex == index) {
+                      viewsToggleList[buttonIndex] = true;
+                    } else {
+                      viewsToggleList[buttonIndex] = false;
+                    }
                   }
-                }
-              });
-            },
-            isSelected: viewsToggleList,
+                });
+              },
+              isSelected: viewsToggleList,
+            ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            padding: const EdgeInsets.only(right: 8.0),
             child: IconButton(
               icon: const FaIcon(FontAwesomeIcons.plus),
               onPressed: () async {
