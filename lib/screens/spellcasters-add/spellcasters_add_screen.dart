@@ -215,17 +215,17 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
           const SizedBox(height: 20.0),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-                primary: Colors.black38, //background color of button
+                primary: Colors.purple.shade500, //background color of button
                 elevation: 3, //elevation of button
                 shape: const CircleBorder(),
                 padding:
-                    const EdgeInsets.all(18) //content padding inside button
+                    const EdgeInsets.all(20) //content padding inside button
                 ),
             child: const Padding(
-              padding: EdgeInsets.only(left: 4.0, top: 4.0),
+              padding: EdgeInsets.only(left: 2.0, top: 4.0),
               child: FaIcon(
                 FontAwesomeIcons.scroll,
-                color: Colors.purpleAccent,
+                color: Colors.white,
                 size: 23.0,
               ),
             ),
