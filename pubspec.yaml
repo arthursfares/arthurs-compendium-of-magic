@@ -38,7 +38,6 @@ dependencies:
   image_cropper: ^1.5.1
   font_awesome_flutter: ^10.1.0
   community_material_icon: ^5.9.55
-  firebase_core: ^0.4.0+9
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
