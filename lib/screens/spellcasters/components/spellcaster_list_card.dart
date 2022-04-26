@@ -113,7 +113,7 @@ class Card extends StatelessWidget {
       height: 124.0,
       // margin: const EdgeInsets.only(left: 46.0),
       decoration: BoxDecoration(
-        color: const Color(0xFF333366),
+        color: const Color(0xFF3E065F),
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.circular(8.0),
         boxShadow: const <BoxShadow>[

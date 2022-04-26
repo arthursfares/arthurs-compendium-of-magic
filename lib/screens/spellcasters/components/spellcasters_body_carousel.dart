@@ -32,10 +32,10 @@ class SpellcastersBodyCarousel extends StatelessWidget {
                     margin: EdgeInsets.only(top: size.height * 0.15),
                     height: size.height * 0.5,
                     width: size.width * 0.8,
-                    decoration: BoxDecoration(
-                      color: Colors.purple[900],
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF3E065F),
                       borderRadius:
-                          const BorderRadius.all(Radius.circular(16.0)),
+                          BorderRadius.all(Radius.circular(16.0)),
                     ),
                   ),
 
