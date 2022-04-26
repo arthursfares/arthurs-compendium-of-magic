@@ -78,7 +78,7 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
             child: const Icon(
               // CommunityMaterialIcons.crystal_ball,
               CommunityMaterialIcons.image_search,
-              color: Colors.purpleAccent,
+              color: Color.fromARGB(212, 146, 84, 200),
               size: 33.0,
             ),
           ),
@@ -130,15 +130,20 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
             disabledColor: Colors.grey,
             icon: Icon(
               Icons.check,
-              color: isNameEmpty ? null : Colors.purpleAccent,
+              color:
+                  isNameEmpty ? null : const Color.fromARGB(212, 146, 84, 200),
             ),
             onPressed: isNameEmpty
                 ? () {
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
-                        return const AlertDialog(
-                          title: Text('Names are important'),
+                        return AlertDialog(
+                          backgroundColor: Colors.redAccent.shade200,
+                          title: const Text(
+                            'Spellcasters must have names',
+                            textAlign: TextAlign.center,
+                          ),
                         );
                       },
                     );
@@ -154,33 +159,37 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const SizedBox(height: 50.0),
+          const SizedBox(height: 20.0),
           // THUMBNAIL
           imageProfile(size),
 
           // NAME
-          const SizedBox(height: 20.0),
+          SizedBox(height: size.height / 32 + 20),
           Center(
-            child: OutlineBorderInputField(
-              labelText: 'Name',
-              icon: CommunityMaterialIcons.cupcake,
-              controller: nameTextController,
-              onChanged: (value) {
-                setState(() {
-                  isNameEmpty = nameTextController.text.isEmpty ? true : false;
-                });
-              },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: OutlineBorderInputField(
+                labelText: 'Name',
+                icon: CommunityMaterialIcons.cupcake,
+                controller: nameTextController,
+                onChanged: (value) {
+                  setState(() {
+                    isNameEmpty =
+                        nameTextController.text.isEmpty ? true : false;
+                  });
+                },
+              ),
             ),
           ),
 
           // CLASS & LEVEL
-          const SizedBox(height: 20.0),
+          SizedBox(height: size.height / 32 + 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // CLASS
               SizedBox(
-                height: 200,
+                height: 130,
                 width: 200,
                 child: ScrollPicker(
                   items: dndClasses,
@@ -194,7 +203,7 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
               ),
               // LEVEL
               SizedBox(
-                height: 200,
+                height: 130,
                 width: 100,
                 child: ScrollPicker(
                   items: dndLevels,
@@ -209,15 +218,19 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
             ],
           ),
 
-          
-
           // DESCRIPTION
-          const SizedBox(height: 20.0),
+          SizedBox(height: size.height / 32 + 20),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-                primary: Colors.purple.shade500, //background color of button
+                primary: Theme.of(context)
+                    .scaffoldBackgroundColor, //background color of button
                 elevation: 3, //elevation of button
-                shape: const CircleBorder(),
+                shape: const CircleBorder(
+                  side: BorderSide(
+                    color: Color.fromARGB(212, 146, 84, 200),
+                    width: 1.2,
+                  ),
+                ),
                 padding:
                     const EdgeInsets.all(20) //content padding inside button
                 ),
@@ -225,7 +238,7 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
               padding: EdgeInsets.only(left: 2.0, top: 4.0),
               child: FaIcon(
                 FontAwesomeIcons.scroll,
-                color: Colors.white,
+                color: Color.fromARGB(212, 146, 84, 200),
                 size: 23.0,
               ),
             ),
@@ -235,6 +248,7 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                 barrierDismissible: false,
                 builder: (BuildContext context) {
                   return Dialog(
+                    backgroundColor: const Color(0xFF161616),
                     child: SizedBox(
                       height: 400,
                       child: Padding(
@@ -242,7 +256,13 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text('Description'),
+                            const Text(
+                              'Description',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                            ),
                             const SizedBox(
                               height: 20.0,
                             ),
@@ -254,19 +274,31 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                                 keyboardType: TextInputType.multiline,
                                 scrollPadding: const EdgeInsets.all(20.0),
                                 autofocus: true,
+                                cursorColor:
+                                    const Color.fromARGB(212, 146, 84, 200),
                                 decoration: const InputDecoration(
                                   hintText: "Fireball enthusiast 🔥🔥🔥",
-                                  border: OutlineInputBorder(),
+                                  // border: OutlineInputBorder(),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color.fromARGB(212, 146, 84, 200),
+                                      width: 2,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(
-                                  bottom: 16.0, top: 30.0),
+                                  bottom: 8.0, top: 20.0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   ElevatedButton(
+                                    child: const Text(
+                                      "Save",
+                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                                    ),
                                     onPressed: () {
                                       setState(() {
                                         _description =
@@ -281,14 +313,48 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                                       ));
                                       Navigator.of(context).pop();
                                     },
-                                    child: const Text("Save"),
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              Colors.purpleAccent.shade700),
+                                      padding:
+                                          MaterialStateProperty.all<EdgeInsets>(
+                                              const EdgeInsets.symmetric(
+                                                  horizontal: 8.0)),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                  const SizedBox(width: 10),
+                                  const SizedBox(width: 20),
                                   ElevatedButton(
+                                    child: const Text(
+                                      "Discard",
+                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                                    ),
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                     },
-                                    child: const Text("Discard changes"),
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              Colors.grey.shade600),
+                                      padding:
+                                          MaterialStateProperty.all<EdgeInsets>(
+                                              const EdgeInsets.symmetric(
+                                                  horizontal: 8.0)),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
