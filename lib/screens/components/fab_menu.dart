@@ -38,6 +38,8 @@ class _FabMenuState extends State<FabMenu> {
         childrenButtonSize: const Size(60.0, 60.0),
         children: [
           SpeedDialChild(
+            backgroundColor: const Color(0xFF202020),
+            labelBackgroundColor: const Color(0xFF202020),
             child: const FaIcon(FontAwesomeIcons.hatWizard, size: 19.0,),
             label: 'Spellcasters',
             onTap: () {
@@ -45,6 +47,8 @@ class _FabMenuState extends State<FabMenu> {
             },
           ),
           SpeedDialChild(
+            backgroundColor: const Color(0xFF202020),
+            labelBackgroundColor: const Color(0xFF202020),
             child: const FaIcon(FontAwesomeIcons.mugHot, size: 19.0,),
             label: 'About',
             onTap: () {
@@ -52,6 +56,8 @@ class _FabMenuState extends State<FabMenu> {
             },
           ),
           SpeedDialChild(
+            backgroundColor: const Color(0xFF202020),
+            labelBackgroundColor: const Color(0xFF202020),
             child: const FaIcon(FontAwesomeIcons.flask, size: 19.0,),
             label: 'Settings',
             onTap: () {
