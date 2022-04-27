@@ -1,4 +1,5 @@
 import 'package:arthurs_compendium_of_magic/models/spellcaster_model.dart';
+import 'package:arthurs_compendium_of_magic/screens/spellcasters/components/card_options_dropdown.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
@@ -129,7 +130,7 @@ class SpellcastersBodyCarousel extends StatelessWidget {
                               style: TextStyle(
                                 color: Colors.grey[300],
                                 fontSize: 18.0,
-                                fontWeight: FontWeight.w800,
+                                fontWeight: FontWeight.w500,
                                 fontStyle: FontStyle.italic,
                               ),
                             ),
@@ -161,11 +162,14 @@ class SpellcastersBodyCarousel extends StatelessWidget {
                         ),
                       ],
                     ),
+
+                    // PopupMeunuButton
                     Container(
                       padding: const EdgeInsets.only(right: 8.0),
                       alignment: Alignment.topRight,
-                      child: const Icon(CommunityMaterialIcons.dots_horizontal),
+                      child: const CardOptionsDropdown()
                     ),
+
                   ],
                 ),
               );

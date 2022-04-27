@@ -1,4 +1,9 @@
+import 'package:arthurs_compendium_of_magic/screens/spellcasters/components/card_options_dropdown.dart';
+import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:focused_menu/focused_menu.dart';
+import 'package:focused_menu/modals.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SpellcasterListCard extends StatelessWidget {
   const SpellcasterListCard({
@@ -16,12 +21,62 @@ class SpellcasterListCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Container(
-        height: 120.0,
-        margin: const EdgeInsets.symmetric(
-          vertical: 16.0,
-          horizontal: 24.0,
-        ),
+      height: 120.0,
+      margin: const EdgeInsets.symmetric(
+        vertical: 16.0,
+        horizontal: 24.0,
+      ),
+      child: FocusedMenuHolder(
+        menuWidth: size.width * 0.50,
+        blurSize: 5.0,
+        menuItemExtent: 45,
+        menuBoxDecoration: const BoxDecoration(
+            color: Color(0xFF161616),
+            borderRadius: BorderRadius.all(Radius.circular(15.0))),
+        duration: const Duration(milliseconds: 100),
+        animateMenuItems: true,
+        blurBackgroundColor: Colors.black54,
+        openWithTap: true, // Open Focused-Menu on Tap rather than Long Press
+        menuOffset:
+            10.0, // Offset value to show menuItem from the selected item
+        bottomOffsetHeight:
+            80.0, // Offset height to consider, for showing the menu item ( for example bottom navigation bar), so that the popup menu will be shown on top of selected item.
+        menuItems: <FocusedMenuItem>[
+          // Add Each FocusedMenuItem  for Menu Options
+          FocusedMenuItem(
+            backgroundColor: Colors.greenAccent.shade400,
+            title: const Text("Spellbook",
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            trailingIcon: const Icon(FontAwesomeIcons.bookSkull),
+            onPressed: () {},
+          ),
+          FocusedMenuItem(
+            backgroundColor: const Color(0xFF161616),
+            title: const Text("Edit",
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            trailingIcon:
+                const Icon(FontAwesomeIcons.wandMagicSparkles, size: 20),
+            onPressed: () {},
+          ),
+          FocusedMenuItem(
+            backgroundColor: const Color(0xFF161616),
+            title: const Text(
+              "Delete",
+              style: TextStyle(
+                  color: Colors.redAccent, fontWeight: FontWeight.bold),
+            ),
+            trailingIcon: const Icon(
+              Icons.delete,
+              color: Colors.redAccent,
+            ),
+            onPressed: () {},
+          ),
+        ],
+        onPressed: () {},
+
         child: Stack(
           children: <Widget>[
             Card(
@@ -31,7 +86,9 @@ class SpellcasterListCard extends StatelessWidget {
             ),
             Thumbnail(image: image),
           ],
-        ));
+        ),
+      ),
+    );
   }
 }
 
