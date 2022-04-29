@@ -1,4 +1,3 @@
-import 'package:arthurs_compendium_of_magic/screens/spellcasters/components/card_options_dropdown.dart';
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:focused_menu/focused_menu.dart';
@@ -51,7 +50,10 @@ class SpellcasterListCard extends StatelessWidget {
             title: const Text("Spellbook",
                 style: TextStyle(fontWeight: FontWeight.bold)),
             trailingIcon: const Icon(FontAwesomeIcons.bookSkull),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, 'spellbook',
+                                arguments: spellcasterName);
+            },
           ),
           FocusedMenuItem(
             backgroundColor: const Color(0xFF161616),
@@ -69,7 +71,7 @@ class SpellcasterListCard extends StatelessWidget {
                   color: Colors.redAccent, fontWeight: FontWeight.bold),
             ),
             trailingIcon: const Icon(
-              Icons.delete,
+              CommunityMaterialIcons.skull_crossbones,
               color: Colors.redAccent,
             ),
             onPressed: () {},
@@ -79,7 +81,8 @@ class SpellcasterListCard extends StatelessWidget {
 
         child: Stack(
           children: <Widget>[
-            Card(
+            const Card(),
+            CardContent(
               spellcasterName: spellcasterName,
               dndClass: dndClass,
               level: level,
@@ -110,8 +113,6 @@ class CardContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var radius = const Radius.circular(8.0);
-
     return Container(
       margin: const EdgeInsets.fromLTRB(76.0 + 46.0 + 16.0, 16.0, 16.0, 16.0),
       constraints: const BoxConstraints.expand(),
@@ -179,14 +180,7 @@ class CardContent extends StatelessWidget {
 class Card extends StatelessWidget {
   const Card({
     Key? key,
-    required this.spellcasterName,
-    required this.dndClass,
-    required this.level,
   }) : super(key: key);
-
-  final String spellcasterName;
-  final String dndClass;
-  final int level;
 
   @override
   Widget build(BuildContext context) {
@@ -194,7 +188,16 @@ class Card extends StatelessWidget {
       height: 124.0,
       // margin: const EdgeInsets.only(left: 46.0),
       decoration: BoxDecoration(
-        color: const Color(0xFF3E065F),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color(0xFF3E065F),
+            Color.fromARGB(255, 81, 9, 122),
+            Color.fromARGB(255, 102, 19, 150),
+            Color.fromARGB(255, 132, 51, 179),
+          ],
+        ),
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.circular(8.0),
         boxShadow: const <BoxShadow>[
@@ -204,11 +207,6 @@ class Card extends StatelessWidget {
             offset: Offset(0.0, 10.0),
           ),
         ],
-      ),
-      child: CardContent(
-        spellcasterName: spellcasterName,
-        dndClass: dndClass,
-        level: level,
       ),
     );
   }
