@@ -7,6 +7,7 @@ class CardOptionsDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
       color: const Color(0xFF161616),
       icon: const Icon(CommunityMaterialIcons.dots_horizontal),
       itemBuilder: (context) {
