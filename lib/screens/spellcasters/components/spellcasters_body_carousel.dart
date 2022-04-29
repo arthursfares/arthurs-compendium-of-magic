@@ -1,9 +1,9 @@
 import 'package:arthurs_compendium_of_magic/models/spellcaster_model.dart';
 import 'package:arthurs_compendium_of_magic/screens/spellcasters/components/card_options_dropdown.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shimmer/shimmer.dart';
 
 class SpellcastersBodyCarousel extends StatelessWidget {
   const SpellcastersBodyCarousel({
@@ -37,7 +37,16 @@ class SpellcastersBodyCarousel extends StatelessWidget {
                       height: size.height * 0.5 + 20,
                       width: size.width * 0.8,
                       decoration: const BoxDecoration(
-                        color: Color(0xFF3E065F),
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color(0xFF3E065F),
+                            Color.fromARGB(255, 81, 9, 122),
+                            Color.fromARGB(255, 102, 19, 150),
+                            Color.fromARGB(255, 132, 51, 179),
+                          ],
+                        ),
                         borderRadius: BorderRadius.all(Radius.circular(16.0)),
                       ),
                     ),
@@ -128,7 +137,7 @@ class SpellcastersBodyCarousel extends StatelessWidget {
                               spellcaster.description,
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: Colors.grey[300],
+                                color: Colors.grey.shade100,
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.w500,
                                 fontStyle: FontStyle.italic,
@@ -138,38 +147,59 @@ class SpellcastersBodyCarousel extends StatelessWidget {
                         ),
 
                         // SPELLBOOK BUTTON
-                        const SizedBox(height: 12),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              primary: Colors.greenAccent
-                                  .shade400, //background color of button
-                              elevation: 3, //elevation of button
-                              shape: const CircleBorder(),
-                              padding: const EdgeInsets.all(
-                                  18) //content padding inside button
-                              ),
-                          child: const Padding(
-                            padding: EdgeInsets.only(left: 0, top: 4),
-                            child: FaIcon(
-                              FontAwesomeIcons.bookSkull,
-                              size: 30.0,
-                            ),
-                          ),
-                          onPressed: () {
+                        const SizedBox(height: 65),
+                        GestureDetector(
+                          onTap: () {
                             Navigator.pushNamed(context, 'spellbook',
                                 arguments: spellcaster.name);
                           },
-                        ),
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Shimmer.fromColors(
+                                baseColor: Colors.greenAccent.shade400,
+                                highlightColor:
+                                    const Color.fromARGB(255, 148, 245, 198),
+                                child: Container(
+                                  height: 50,
+                                  width: 150,
+                                  decoration: BoxDecoration(
+                                    color: Colors.greenAccent.shade400,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(12.0)),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 130,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const [
+                                    FaIcon(FontAwesomeIcons.bookSkull,
+                                        size: 26.0),
+                                    SizedBox(width: 10),
+                                    Text(
+                                      'Spellbook',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
                       ],
                     ),
 
                     // PopupMeunuButton
                     Container(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      alignment: Alignment.topRight,
-                      child: const CardOptionsDropdown()
-                    ),
-
+                        // padding: const EdgeInsets.only(right: 8.0),
+                        alignment: Alignment.topRight,
+                        child: const CardOptionsDropdown()),
                   ],
                 ),
               );
