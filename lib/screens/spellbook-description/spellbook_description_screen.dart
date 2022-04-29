@@ -78,12 +78,16 @@ class _SpellbookDescriptionScreenState
 
     for (int i = 0; i < descList.length; i++) {
       if (descList[i].toString()[0] == '|') {
+        // of starts with |
         initTableIndex = i;
         tablesStartIndex.add(initTableIndex);
         if (initTableIndex != -1) {
           for (int i = initTableIndex + 1; i < descList.length; i++) {
-            if (descList[i].toString().startsWith('|')) {
+            if ((descList[i].toString().startsWith('|')) &&
+                !(descList[i].toString().contains('---'))) {
               descList[initTableIndex] += descList[i].toString();
+              descList[i] = '';
+            } else if (descList[i].toString().contains('---')) {
               descList[i] = '';
             } else {
               break;
@@ -96,6 +100,38 @@ class _SpellbookDescriptionScreenState
       }
     }
 
+    Map<int, TableColumnWidth> _getWidths(List<String> contentSample) {
+      contentSample.removeWhere((element) => element == '');
+      Map<int, TableColumnWidth> widthsMap = {};
+      for (String item in contentSample.sublist(1, contentSample.length - 1)) {
+        if (item.replaceAll(' ', '').length > 10) {
+          widthsMap[contentSample.indexOf(item)] = const FixedColumnWidth(100);
+        } else {
+          widthsMap[contentSample.indexOf(item)] = const FlexColumnWidth();
+        }
+      }
+      return widthsMap;
+    }
+
+    List<Widget> _getRow(List<String> content) {
+      print(content);
+      List<Widget> row = [];
+      for (String item in content.sublist(1, content.length - 1)) {
+        row.add(Container(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            item,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 12,
+            ),
+          ),
+        ));
+      }
+      return row;
+    }
+
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -106,18 +142,29 @@ class _SpellbookDescriptionScreenState
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: MarkdownBody(data: item),
                     )
-                  : Container(
-                      width: double.infinity,
-                      height: 500,
-                      color: Colors.amber,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          const SizedBox(width: 20),
-                          SizedBox(
-                              width: 1000, child: MarkdownBody(data: item)),
-                          const SizedBox(width: 20),
-                        ],
+                  : SingleChildScrollView(
+                      // found table
+                      scrollDirection: Axis.horizontal,
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: Table(
+                          defaultVerticalAlignment:
+                              TableCellVerticalAlignment.middle,
+                          border: TableBorder.all(
+                            color: Colors.green,
+                            width: 2.0,
+                            style: BorderStyle.solid,
+                          ),
+                          columnWidths: _getWidths(item
+                              .split('\n')[1]
+                              .split('|')), // pass sample row to get width
+                          children: item
+                              .split('\n')
+                              .map<TableRow>((value) {
+                            return TableRow(
+                                children: _getRow(value.split('|')));
+                          }).toList(),
+                        ),
                       ),
                     ),
             )
