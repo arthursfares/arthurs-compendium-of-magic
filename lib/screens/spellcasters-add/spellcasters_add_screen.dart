@@ -238,7 +238,7 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
               padding: EdgeInsets.only(left: 2.0, top: 4.0),
               child: FaIcon(
                 FontAwesomeIcons.scroll,
-                color: Color.fromARGB(212, 146, 84, 200),
+                color: Colors.white,
                 size: 23.0,
               ),
             ),
