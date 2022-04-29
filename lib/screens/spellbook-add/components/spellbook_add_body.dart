@@ -48,7 +48,14 @@ class _SpellbookAddBodyState extends State<SpellbookAddBody> {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
-              title: Text(spellList[index].name),
+              title: Text(
+                spellList[index].name,
+                textAlign: TextAlign.left,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
               onTap: () {
                 Navigator.pop(context, spellList[index]);
               },
