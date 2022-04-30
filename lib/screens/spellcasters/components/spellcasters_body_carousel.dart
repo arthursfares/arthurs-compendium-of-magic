@@ -1,4 +1,4 @@
-import 'package:arthurs_compendium_of_magic/models/spellcaster_model.dart';
+import 'package:arthurs_compendium_of_magic/models/spellcaster_list_model.dart';
 import 'package:arthurs_compendium_of_magic/screens/spellcasters/components/card_options_dropdown.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -7,10 +7,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class SpellcastersBodyCarousel extends StatelessWidget {
   const SpellcastersBodyCarousel({
     Key? key,
-    required this.spellcasters,
+    required this.spellcasterList,
   }) : super(key: key);
 
-  final List<SpellcasterModel> spellcasters;
+  final SpellcasterListModel spellcasterList;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class SpellcastersBodyCarousel extends StatelessWidget {
           height: size.height,
           enlargeCenterPage: true,
         ),
-        items: spellcasters.map((spellcaster) {
+        items: spellcasterList.spellcasters.map((spellcaster) {
           return Builder(
             builder: (BuildContext context) {
               return Padding(
@@ -191,9 +191,12 @@ class SpellcastersBodyCarousel extends StatelessWidget {
 
                     // PopupMeunuButton
                     Container(
-                        // padding: const EdgeInsets.only(right: 8.0),
-                        alignment: Alignment.topRight,
-                        child: const CardOptionsDropdown()),
+                      // padding: const EdgeInsets.only(right: 8.0),
+                      alignment: Alignment.topRight,
+                      child: CardOptionsDropdown(
+                        index: spellcasterList.spellcasters.indexOf(spellcaster),
+                      ),
+                    ),
                   ],
                 ),
               );
