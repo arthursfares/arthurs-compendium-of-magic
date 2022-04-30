@@ -22,10 +22,10 @@ class _SpellcastersScreenState extends State<SpellcastersScreen> {
     super.initState();
 
     spellcasters.add(SpellcasterModel(
-      'Nic Cage',
-      const AssetImage('assets/images/nic-cage.png'),
+      'Nick Cage',
+      Image.asset('assets/images/nic-cage.png'),
       'Wizard',
-      9,
+      19,
       'I\'m going to steal the Declaration of Independence',
     ));
   }
@@ -52,7 +52,7 @@ class _SpellcastersScreenState extends State<SpellcastersScreen> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         actions: [
           Padding(
-            padding: EdgeInsets.only(top: 8.0, bottom: 8.0, right: size.width/4),
+            padding: EdgeInsets.only(top: 8.0, bottom: 8.0, right: size.width / 4),
             child: ToggleButtons(
               fillColor: Colors.purple.shade300.withOpacity(0),
               selectedColor: Colors.purpleAccent.shade700,
