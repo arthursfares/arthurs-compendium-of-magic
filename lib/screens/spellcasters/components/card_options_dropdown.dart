@@ -22,19 +22,45 @@ class CardOptionsDropdown extends StatelessWidget {
       icon: const Icon(CommunityMaterialIcons.dots_horizontal),
       itemBuilder: (context) {
         return [
-          const PopupMenuItem<int>(
+          PopupMenuItem<int>(
             value: 0,
-            child: Text(
-              "Edit",
-              style: TextStyle(fontWeight: FontWeight.bold),
+            child: BackdropFilter(
+              blendMode: BlendMode.src,
+              filter: ImageFilter.blur(
+                sigmaX: 4,
+                sigmaY: 4,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    "Edit",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  FaIcon(
+                    FontAwesomeIcons.wandMagicSparkles,
+                    size: 18,
+                  )
+                ],
+              ),
             ),
           ),
           PopupMenuItem<int>(
             value: 1,
-            child: Text(
-              "Delete",
-              style: TextStyle(
-                  color: Colors.red.shade800, fontWeight: FontWeight.bold),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Delete",
+                  style: TextStyle(
+                      color: Colors.red.shade800, fontWeight: FontWeight.bold),
+                ),
+                FaIcon(
+                  FontAwesomeIcons.skullCrossbones,
+                  size: 19,
+                  color: Colors.red.shade800,
+                )
+              ],
             ),
           ),
         ];
@@ -71,20 +97,17 @@ class CardOptionsDropdown extends StatelessWidget {
                       );
                     },
                   ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                TextButton(
-                  child: const Text(
-                    'CANCEL',
-                    style: TextStyle(color: Colors.white),
+                  TextButton(
+                    child: const Text(
+                      'CANCEL',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                   ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              ],
+                ],
+              ),
             ),
           );
         }
