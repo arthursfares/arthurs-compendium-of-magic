@@ -30,18 +30,6 @@ class _SpellcastersScreenState extends State<SpellcastersScreen> {
     ));
   }
 
-  void addSpellcasterToList(String spellcasterName) {
-    setState(() {
-      spellcasters.add(SpellcasterModel(
-        spellcasterName,
-        const AssetImage('assets/images/ken-thompson.png'),
-        'Wizard',
-        20,
-        'Mages don\'t wear pants',
-      ));
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -83,10 +71,12 @@ class _SpellcastersScreenState extends State<SpellcastersScreen> {
             child: IconButton(
               icon: const FaIcon(FontAwesomeIcons.plus),
               onPressed: () async {
-                Navigator.pushNamed(context, 'spellcasters-add').then(
-                  (newSpellcasterName) =>
-                      addSpellcasterToList(newSpellcasterName as String),
-                );
+                Navigator.pushNamed(context, 'spellcasters-add')
+                    .then((newSpellcaster) {
+                  setState(() {
+                    spellcasters.add(newSpellcaster as SpellcasterModel);
+                  });
+                });
               },
             ),
           ),
