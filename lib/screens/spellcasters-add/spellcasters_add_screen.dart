@@ -245,6 +245,8 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
               ),
             ),
             onPressed: () {
+              String originalDescription = descriptionTextController.text;
+
               showDialog(
                 context: context,
                 barrierDismissible: false,
@@ -258,34 +260,38 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
-                              'Description',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
+                            const Padding(
+                              padding: EdgeInsets.only(top: 8.0),
+                              child: Text(
+                                'Description',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
                               ),
                             ),
-                            const SizedBox(
-                              height: 20.0,
-                            ),
-                            Expanded(
-                              child: TextFormField(
-                                controller: descriptionTextController,
-                                minLines: 13,
-                                maxLines: null,
-                                keyboardType: TextInputType.multiline,
-                                scrollPadding: const EdgeInsets.all(20.0),
-                                autofocus: true,
-                                cursorColor:
-                                    const Color.fromARGB(212, 146, 84, 200),
-                                decoration: const InputDecoration(
-                                  hintText: "Fireball enthusiast 🔥🔥🔥",
-                                  // border: OutlineInputBorder(),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color.fromARGB(212, 146, 84, 200),
-                                      width: 2,
-                                    ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20.0),
+                              child: Expanded(
+                                child: TextFormField(
+                                  controller: descriptionTextController,
+                                  minLines: 13,
+                                  maxLines: null,
+                                  keyboardType: TextInputType.multiline,
+                                  scrollPadding: const EdgeInsets.all(20.0),
+                                  autofocus: true,
+                                  cursorColor:
+                                      const Color.fromARGB(212, 146, 84, 200),
+                                  decoration: const InputDecoration(
+                                    hintText: "Fireball enthusiast 🔥🔥🔥",
+                                    border: InputBorder.none,
+                                    // focusedBorder: OutlineInputBorder(
+                                    //   borderSide: BorderSide(
+                                    //     color: Color.fromARGB(212, 146, 84, 200),
+                                    //     width: 2,
+                                    //   ),
+                                    // ),
                                   ),
                                 ),
                               ),
@@ -296,71 +302,49 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  ElevatedButton(
-                                    child: const Text(
-                                      "Save",
+                                  GestureDetector(
+                                    child: Text(
+                                      "SAVE",
                                       style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold),
+                                        fontSize: 14,
+                                        color: Colors.purple.shade400,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                    onPressed: () {
+                                    onTap: () {
                                       setState(() {
                                         _description =
                                             descriptionTextController.text;
                                       });
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(SnackBar(
-                                        backgroundColor: Colors.grey[200],
+                                        backgroundColor:
+                                            Colors.purpleAccent.shade100,
                                         content: const Text(
-                                            'Description saved successfully :)'),
+                                          'Description saved successfully',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(color: Colors.white),
+                                        ),
                                         duration: const Duration(seconds: 3),
                                       ));
                                       Navigator.of(context).pop();
                                     },
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                              Colors.purpleAccent.shade700),
-                                      padding:
-                                          MaterialStateProperty.all<EdgeInsets>(
-                                              const EdgeInsets.symmetric(
-                                                  horizontal: 8.0)),
-                                      shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                      ),
-                                    ),
                                   ),
-                                  const SizedBox(width: 20),
-                                  ElevatedButton(
-                                    child: const Text(
-                                      "Discard",
+                                  const SizedBox(width: 40),
+                                  GestureDetector(
+                                    child: Text(
+                                      "DISCARD",
                                       style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                              Colors.grey.shade600),
-                                      padding:
-                                          MaterialStateProperty.all<EdgeInsets>(
-                                              const EdgeInsets.symmetric(
-                                                  horizontal: 8.0)),
-                                      shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
+                                        fontSize: 14,
+                                        color: Colors.grey.shade400,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
+                                    onTap: () {
+                                      Navigator.of(context).pop();
+                                      descriptionTextController.text =
+                                          originalDescription;
+                                    },
                                   ),
                                 ],
                               ),
