@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:arthurs_compendium_of_magic/models/spellcaster_model.dart';
 import 'package:arthurs_compendium_of_magic/screens/components/outline_border_input_field.dart';
@@ -19,7 +20,8 @@ class SpellcastersAddScreen extends StatefulWidget {
 class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
   TextEditingController nameTextController = TextEditingController();
   TextEditingController descriptionTextController = TextEditingController();
-  File? image = File('assets/images/euler.png');
+  File image = File('assets/images/larry-bird.png');
+  bool usePickedImage = false;
   String _class = 'Wizard';
   int _level = 1;
   String _description = '';
@@ -47,50 +49,10 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
     );
   }
 
-  Widget imageProfile(Size contextSize) {
-    return Center(
-      child: Stack(children: <Widget>[
-        CircleAvatar(
-          radius: 100.0,
-          backgroundImage: FileImage(image!),
-        ),
-        Positioned(
-          bottom: 28.0,
-          right: contextSize.width / 4 - 11.5,
-          child: InkWell(
-            onTap: () async {
-              // Step #1: Pick Image From Gallery.
-              await pickImageFromGallery().then((pickedFile) async {
-                // Step #2: Check if we actually picked an image. Otherwise -> stop;
-                if (pickedFile == null) return;
-
-                // Step #3: Crop earlier selected image
-                await cropSelectedImage(pickedFile.path).then((croppedFile) {
-                  // Step #4: Check if we actually cropped an image. Otherwise -> stop;
-                  if (croppedFile == null) return;
-
-                  // Step #5: Display image on screen
-                  setState(() {
-                    image = croppedFile;
-                  });
-                });
-              });
-            },
-            child: const Icon(
-              // CommunityMaterialIcons.crystal_ball,
-              CommunityMaterialIcons.image_search,
-              color: Color.fromARGB(212, 146, 84, 200),
-              size: 33.0,
-            ),
-          ),
-        ),
-      ]),
-    );
-  }
-
   @override
   void initState() {
     super.initState();
+    image = File('assets/images/larry-bird.png');
     descriptionTextController.text = _description;
   }
 
@@ -139,11 +101,17 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
-                        return AlertDialog(
-                          backgroundColor: Colors.redAccent.shade200,
-                          title: const Text(
-                            'Spellcasters must have names',
-                            textAlign: TextAlign.center,
+                        return BackdropFilter(
+                          filter: ImageFilter.blur(
+                            sigmaX: 4,
+                            sigmaY: 4,
+                          ),
+                          child: AlertDialog(
+                            backgroundColor: Colors.redAccent.shade200,
+                            title: const Text(
+                              'Spellcasters must have names',
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         );
                       },
@@ -152,7 +120,15 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                 : () async {
                     Navigator.pop(
                       context,
-                      SpellcasterModel(nameTextController.text, Image.file(image!), _class, _level, _description),
+                      usePickedImage
+                          ? SpellcasterModel(nameTextController.text,
+                              Image.file(image), _class, _level, _description)
+                          : SpellcasterModel(
+                              nameTextController.text,
+                              Image.asset('assets/images/larry-bird.png'),
+                              _class,
+                              _level,
+                              _description),
                     );
                   },
           ),
@@ -163,7 +139,48 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
         children: [
           const SizedBox(height: 20.0),
           // THUMBNAIL
-          imageProfile(size),
+          Center(
+            child: Stack(children: <Widget>[
+              CircleAvatar(
+                radius: 100.0,
+                backgroundImage: usePickedImage
+                    ? Image.file(image).image
+                    : Image.asset('assets/images/larry-bird.png').image,
+              ),
+              Positioned(
+                bottom: 28.0,
+                right: size.width / 4 - 11.5,
+                child: InkWell(
+                  onTap: () async {
+                    // Step #1: Pick Image From Gallery.
+                    await pickImageFromGallery().then((pickedFile) async {
+                      // Step #2: Check if we actually picked an image. Otherwise -> stop;
+                      if (pickedFile == null) return;
+
+                      // Step #3: Crop earlier selected image
+                      await cropSelectedImage(pickedFile.path)
+                          .then((croppedFile) {
+                        // Step #4: Check if we actually cropped an image. Otherwise -> stop;
+                        if (croppedFile == null) return;
+
+                        // Step #5: Display image on screen
+                        setState(() {
+                          image = croppedFile;
+                          usePickedImage = true;
+                        });
+                      });
+                    });
+                  },
+                  child: const Icon(
+                    // CommunityMaterialIcons.crystal_ball,
+                    CommunityMaterialIcons.image_search,
+                    color: Color.fromARGB(212, 146, 84, 200),
+                    size: 33.0,
+                  ),
+                ),
+              ),
+            ]),
+          ),
 
           // NAME
           SizedBox(height: size.height / 32 + 20),
