@@ -58,14 +58,14 @@ class _SpellbookDescriptionScreenState
           color: Colors.white,
           fontFamily: 'Space Quest',
           letterSpacing: 1,
-          fontSize: 20,
+          fontSize: 28,
         ),
       ),
       body: SizedBox(
         width: size.width,
         height: size.height,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 50.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: buildDescParagraph(spell.description),
         ),
       ),
@@ -114,7 +114,6 @@ class _SpellbookDescriptionScreenState
     }
 
     List<Widget> _getRow(List<String> content) {
-      print(content);
       List<Widget> row = [];
       for (String item in content.sublist(1, content.length - 1)) {
         row.add(Container(
@@ -124,7 +123,7 @@ class _SpellbookDescriptionScreenState
             textAlign: TextAlign.center,
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 12,
+              fontSize: 18,
             ),
           ),
         ));
@@ -140,30 +139,36 @@ class _SpellbookDescriptionScreenState
               (item) => !tablesStartIndex.contains(descList.indexOf(item))
                   ? Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: MarkdownBody(data: item),
+                      child: MarkdownBody(
+                        data: item,
+                        styleSheet: MarkdownStyleSheet(
+                          p: const TextStyle(fontSize: 18,),
+                        ),
+                      ),
                     )
-                  : SingleChildScrollView(
-                      // found table
-                      scrollDirection: Axis.horizontal,
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: Table(
-                          defaultVerticalAlignment:
-                              TableCellVerticalAlignment.middle,
-                          border: TableBorder.all(
-                            color: Colors.green,
-                            width: 2.0,
-                            style: BorderStyle.solid,
+                  : Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: SingleChildScrollView(
+                        // found table
+                        scrollDirection: Axis.horizontal,
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: Table(
+                            defaultVerticalAlignment:
+                                TableCellVerticalAlignment.middle,
+                            border: TableBorder.all(
+                              color: Colors.green,
+                              width: 2.0,
+                              style: BorderStyle.solid,
+                            ),
+                            columnWidths: _getWidths(item
+                                .split('\n')[1]
+                                .split('|')), // pass sample row to get width
+                            children: item.split('\n').map<TableRow>((value) {
+                              return TableRow(
+                                  children: _getRow(value.split('|')));
+                            }).toList(),
                           ),
-                          columnWidths: _getWidths(item
-                              .split('\n')[1]
-                              .split('|')), // pass sample row to get width
-                          children: item
-                              .split('\n')
-                              .map<TableRow>((value) {
-                            return TableRow(
-                                children: _getRow(value.split('|')));
-                          }).toList(),
                         ),
                       ),
                     ),
