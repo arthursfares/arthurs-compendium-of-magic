@@ -3,7 +3,6 @@ import 'package:arthurs_compendium_of_magic/screens/spellcasters/components/card
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shimmer/shimmer.dart';
 
 class SpellcastersBodyCarousel extends StatelessWidget {
   const SpellcastersBodyCarousel({
@@ -156,18 +155,13 @@ class SpellcastersBodyCarousel extends StatelessWidget {
                           child: Stack(
                             alignment: Alignment.center,
                             children: [
-                              Shimmer.fromColors(
-                                baseColor: Colors.greenAccent.shade400,
-                                highlightColor:
-                                    const Color.fromARGB(255, 148, 245, 198),
-                                child: Container(
-                                  height: 50,
-                                  width: 150,
-                                  decoration: BoxDecoration(
-                                    color: Colors.greenAccent.shade400,
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(12.0)),
-                                  ),
+                              Container(
+                                height: 50,
+                                width: 150,
+                                decoration: BoxDecoration(
+                                  color: Colors.greenAccent.shade400,
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(12.0)),
                                 ),
                               ),
                               SizedBox(
