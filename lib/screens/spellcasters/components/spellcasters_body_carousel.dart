@@ -60,7 +60,7 @@ class SpellcastersBodyCarousel extends StatelessWidget {
                             child: Image(
                               width: 200.0,
                               height: 200.0,
-                              image: spellcaster.thumbnail,
+                              image: spellcaster.thumbnail.image,
                             ),
                           ),
                         ),

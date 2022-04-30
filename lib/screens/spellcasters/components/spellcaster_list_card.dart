@@ -14,7 +14,7 @@ class SpellcasterListCard extends StatelessWidget {
   }) : super(key: key);
 
   final String spellcasterName;
-  final AssetImage image;
+  final Image image;
   final String dndClass;
   final int level;
 
@@ -218,7 +218,7 @@ class Thumbnail extends StatelessWidget {
     required this.image,
   }) : super(key: key);
 
-  final AssetImage image;
+  final Image image;
 
   @override
   Widget build(BuildContext context) {
@@ -228,7 +228,7 @@ class Thumbnail extends StatelessWidget {
       child: ClipOval(
         child: Image(
           filterQuality: FilterQuality.high,
-          image: image,
+          image: image.image,
           height: 100.0,
           width: 100.0,
           fit: BoxFit.cover,
