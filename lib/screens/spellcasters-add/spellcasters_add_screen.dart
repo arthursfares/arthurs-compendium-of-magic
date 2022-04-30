@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:arthurs_compendium_of_magic/models/spellcaster_model.dart';
 import 'package:arthurs_compendium_of_magic/screens/components/outline_border_input_field.dart';
 import 'package:arthurs_compendium_of_magic/screens/spellcasters-add/components/custom_scroll_picker.dart';
 import 'package:community_material_icon/community_material_icon.dart';
@@ -149,9 +150,10 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                     );
                   }
                 : () async {
-                    // TODO: add new spellcaster to list
-                    // for now it only adds the default one
-                    Navigator.pop(context, nameTextController.text);
+                    Navigator.pop(
+                      context,
+                      SpellcasterModel(nameTextController.text, Image.file(image!), _class, _level, _description),
+                    );
                   },
           ),
         ],
@@ -289,15 +291,17 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(
-                                  bottom: 8.0, top: 20.0),
+                              padding:
+                                  const EdgeInsets.only(bottom: 8.0, top: 20.0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   ElevatedButton(
                                     child: const Text(
                                       "Save",
-                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                     onPressed: () {
                                       setState(() {
@@ -334,7 +338,9 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                                   ElevatedButton(
                                     child: const Text(
                                       "Discard",
-                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                     onPressed: () {
                                       Navigator.of(context).pop();
