@@ -164,6 +164,7 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
+
           const SizedBox(height: 20.0),
           // THUMBNAIL
           Center(
@@ -197,7 +198,7 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                     });
                   },
                   child: const Icon(
-                    CommunityMaterialIcons.image_search,
+                    CommunityMaterialIcons.crystal_ball,
                     color: Color.fromARGB(212, 146, 84, 200),
                     size: 33.0,
                   ),
