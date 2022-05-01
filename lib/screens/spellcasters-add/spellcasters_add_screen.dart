@@ -213,6 +213,7 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: OutlineBorderInputField(
+                focusColor:  const Color.fromARGB(212, 146, 84, 200),
                 initialText: _name,
                 labelText: 'Name',
                 icon: CommunityMaterialIcons.cupcake,
