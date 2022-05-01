@@ -81,8 +81,9 @@ class _SpellbookAddScreenState extends State<SpellbookAddScreen> {
               onChanged: (value) => search(value),
               controller: searchFieldController,
               cursorColor: Colors.green.shade300,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 24,
+                color: Colors.green.shade300,
               ),
               decoration: InputDecoration(
                 suffixIcon: IconButton(
