@@ -142,7 +142,8 @@ class _SpellbookDescriptionScreenState
                       child: MarkdownBody(
                         data: item,
                         styleSheet: MarkdownStyleSheet(
-                          p: const TextStyle(fontSize: 18,),
+                          p: const TextStyle(fontSize: 18),
+                          h5: const TextStyle(fontSize: 20),
                         ),
                       ),
                     )
@@ -157,7 +158,7 @@ class _SpellbookDescriptionScreenState
                             defaultVerticalAlignment:
                                 TableCellVerticalAlignment.middle,
                             border: TableBorder.all(
-                              color: Colors.green,
+                              color: Colors.green.shade400,
                               width: 2.0,
                               style: BorderStyle.solid,
                             ),
