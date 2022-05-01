@@ -288,7 +288,7 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                 size: 23.0,
               ),
             ),
-            onPressed: () {
+            onPressed: () async {
               if (widget.spellcaster != null) {
                 setState(() {
                   descriptionTextController.text =
@@ -323,20 +323,18 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 20.0),
-                              child: Expanded(
-                                child: TextFormField(
-                                  controller: descriptionTextController,
-                                  minLines: 13,
-                                  maxLines: null,
-                                  keyboardType: TextInputType.multiline,
-                                  scrollPadding: const EdgeInsets.all(20.0),
-                                  autofocus: true,
-                                  cursorColor:
-                                      const Color.fromARGB(212, 146, 84, 200),
-                                  decoration: const InputDecoration(
-                                    hintText: "Fireball enthusiast 🔥🔥🔥",
-                                    border: InputBorder.none,
-                                  ),
+                              child: TextFormField(
+                                controller: descriptionTextController,
+                                minLines: 13,
+                                maxLines: null,
+                                keyboardType: TextInputType.multiline,
+                                scrollPadding: const EdgeInsets.all(20.0),
+                                autofocus: true,
+                                cursorColor:
+                                    const Color.fromARGB(212, 146, 84, 200),
+                                decoration: const InputDecoration(
+                                  hintText: "Fireball enthusiast 🔥🔥🔥",
+                                  border: InputBorder.none,
                                 ),
                               ),
                             ),
