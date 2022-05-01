@@ -27,10 +27,10 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
   TextEditingController descriptionTextController = TextEditingController();
 
   String _name = '';
-  File image = File('assets/images/larry-bird.png');
+  File image = File('assets/images/ice-bear.jpg');
   bool usePickedImage = false;
-  String _class = 'Wizard';
-  int _level = 1;
+  String _class = 'Warlock';
+  int _level = 3;
   String _description = '';
 
   bool isNameEmpty = true;
@@ -60,7 +60,7 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
   @override
   void initState() {
     super.initState();
-    image = File('assets/images/larry-bird.png');
+    image = File('assets/images/ice-bear.jpg');
 
     if (widget.spellcaster != null) {
       _name = widget.spellcaster!.name;
@@ -151,7 +151,7 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                               _name,
                               widget.spellcaster != null
                                   ? widget.spellcaster!.thumbnail
-                                  : Image.asset('assets/images/larry-bird.png'),
+                                  : Image.asset('assets/images/ice-bear.jpg'),
                               _class,
                               _level,
                               _description,
@@ -175,7 +175,7 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                     ? Image.file(image).image
                     : widget.spellcaster != null
                         ? widget.spellcaster!.thumbnail.image
-                        : Image.asset('assets/images/larry-bird.png')
+                        : Image.asset('assets/images/ice-bear.jpg')
                             .image,
               ),
               Positioned(
