@@ -1,4 +1,3 @@
-[<p align="center">
-  <img src="https://github.com/arthursfares/arthurs-compendium-of-magic/blob/main/assets/gifs/demonstration.gif?raw=true" />
+<p align="center">
+  <img src="https://github.com/arthursfares/arthurs-compendium-of-magic/blob/main/assets/gifs/demonstration.gif?raw=true" href="https://youtu.be/tIUAph8ZNtY">
 </p>
-](https://youtu.be/tIUAph8ZNtY "click here to watch demonstration")
