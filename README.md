@@ -1,1 +1,1 @@
-# Arthur's Compendium of Magic
+[![Demonstration](assets\gifs\demonstration.gif)](https://youtu.be/tIUAph8ZNtY "click here to watch demonstration")
