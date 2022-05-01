@@ -139,7 +139,7 @@ class SpellcastersBodyCarousel extends StatelessWidget {
                                 color: Colors.grey.shade100,
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.w500,
-                                fontStyle: FontStyle.italic,
+                                // fontStyle: FontStyle.italic,
                               ),
                             ),
                           ),
