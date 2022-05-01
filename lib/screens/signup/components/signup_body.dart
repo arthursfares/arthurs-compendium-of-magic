@@ -30,11 +30,11 @@ class SignupBody extends StatelessWidget {
                   children: [
                     const SizedBox(height: 20.0),
                     const OutlineBorderInputField(
-                        labelText: 'Username', icon: FontAwesomeIcons.cat),
+                        labelText: 'Username', icon: FontAwesomeIcons.cat, focusColor: Colors.white),
                     const OutlineBorderInputField(
-                        labelText: 'E-mail', icon: FontAwesomeIcons.solidChessRook),
+                        labelText: 'E-mail', icon: FontAwesomeIcons.solidChessRook, focusColor: Colors.white),
                     const OutlineBorderInputField(
-                        labelText: 'Password', icon: CommunityMaterialIcons.key, obscureText: true),
+                        labelText: 'Password', icon: CommunityMaterialIcons.key, obscureText: true, focusColor: Colors.white),
                     RoundedGradientButton(
                       text: 'Sign up',
                       press: () {},

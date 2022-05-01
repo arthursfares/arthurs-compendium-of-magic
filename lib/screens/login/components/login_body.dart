@@ -31,9 +31,9 @@ class LoginBody extends StatelessWidget {
                   children: [
                     const SizedBox(height: 20.0),
                     const OutlineBorderInputField(
-                        labelText: 'E-mail', icon: FontAwesomeIcons.solidChessRook),
+                        labelText: 'E-mail', icon: FontAwesomeIcons.solidChessRook, focusColor: Colors.white),
                     const OutlineBorderInputField(
-                        labelText: 'Password', icon: CommunityMaterialIcons.key, obscureText: true),
+                        labelText: 'Password', icon: CommunityMaterialIcons.key, focusColor: Colors.white, obscureText: true),
                     ForgotPasswordCheck(press: () {
                       // print('forgot password');
                     }),
