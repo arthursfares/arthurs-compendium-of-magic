@@ -7,7 +7,8 @@ class OutlineBorderInputField extends StatefulWidget {
     required this.icon,
     this.controller,
     this.onChanged,
-    this.obscureText = false,
+    this.obscureText = false, 
+    this.initialText,
   }) : super(key: key);
 
   final String labelText;
@@ -15,6 +16,7 @@ class OutlineBorderInputField extends StatefulWidget {
   final TextEditingController? controller;
   final Function(String)? onChanged;
   final bool? obscureText;
+  final String? initialText; 
 
   @override
   State<OutlineBorderInputField> createState() =>
@@ -23,6 +25,14 @@ class OutlineBorderInputField extends StatefulWidget {
 
 class _OutlineBorderInputFieldState extends State<OutlineBorderInputField> {
   Color _colorText = Colors.white70;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.initialText != null) {
+      widget.controller!.text = widget.initialText!;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
