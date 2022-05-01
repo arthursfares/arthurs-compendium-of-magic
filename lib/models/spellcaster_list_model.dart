@@ -6,9 +6,23 @@ class SpellcasterListModel extends ChangeNotifier {
     SpellcasterModel(
       'Nick Cage',
       Image.asset('assets/images/nic-cage.png'),
+      'Bard',
+      11,
+      '"I\'m going to steal the Declaration of Independence"',
+    ),
+    SpellcasterModel(
+      'John Carmack',
+      Image.asset('assets/images/john-carmack.png'),
       'Wizard',
       19,
-      'I\'m going to steal the Declaration of Independence',
+      'Time traveling interdimensional over genius and actual rocket scientist',
+    ),
+    SpellcasterModel(
+      'Larry Bird',
+      Image.asset('assets/images/larry-bird.png'),
+      'Warlock',
+      13,
+      '🏀🍀🩳',
     ),
   ];
 
