@@ -2,7 +2,7 @@
     package="com.arthursfares.arthurs_compendium_of_magic">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:label="arthurs_compendium_of_magic"
+        android:label="Arthur's Compendium of Magic"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
