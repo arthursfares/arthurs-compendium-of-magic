@@ -23,4 +23,9 @@ class SpellcasterListModel extends ChangeNotifier {
     _spellcasters.removeAt(index);
     notifyListeners();
   }
+
+  void update(int index, SpellcasterModel spellcaster) {
+    _spellcasters[index] = spellcaster;
+    notifyListeners();
+  }
 }
