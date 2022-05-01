@@ -72,10 +72,9 @@ class CardOptionsDropdown extends StatelessWidget {
         },
         onSelected: (value) async {
           if (value == 0) {
-            Navigator.pushNamed(
+            Navigator.push(
               context,
-              'spellcasters-add',
-              arguments: spellcasterList.spellcasters[index],
+              MaterialPageRoute(builder: (context) => SpellcastersAddScreen(spellcaster: spellcasterList.spellcasters[index]))
             ).then((spellcaster) {
               spellcasterList.update(index, spellcaster as SpellcasterModel);
             });

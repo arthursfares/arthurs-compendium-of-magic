@@ -9,10 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
 
 class SpellcastersAddScreen extends StatefulWidget {
-  const SpellcastersAddScreen({Key? key}) : super(key: key);
+  const SpellcastersAddScreen({
+    Key? key,
+    this.spellcaster,
+  }) : super(key: key);
+
+  final SpellcasterModel? spellcaster;
 
   @override
   State<SpellcastersAddScreen> createState() => _SpellcastersAddScreenState();
@@ -57,6 +61,14 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
   void initState() {
     super.initState();
     image = File('assets/images/larry-bird.png');
+
+    if (widget.spellcaster != null) {
+      _name = widget.spellcaster!.name;
+      _class = widget.spellcaster!.dndClass;
+      _level = widget.spellcaster!.level;
+      _description = widget.spellcaster!.description;
+    }
+    nameTextController.text = _name;
     descriptionTextController.text = _description;
   }
 
@@ -68,9 +80,6 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SpellcasterModel? spellcaster =
-        ModalRoute.of(context)?.settings.arguments as SpellcasterModel?;
-
     Size size = MediaQuery.of(context).size;
     List<int> dndLevels =
         List.generate(20, (index) => index + 1, growable: false);
@@ -100,7 +109,7 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
             disabledColor: Colors.grey,
             icon: Icon(
               Icons.check,
-              color: spellcaster != null
+              color: widget.spellcaster != null
                   ? const Color.fromARGB(212, 146, 84, 200)
                   : isNameEmpty
                       ? null
@@ -140,7 +149,9 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                             )
                           : SpellcasterModel(
                               _name,
-                              spellcaster != null ? spellcaster.thumbnail : Image.asset('assets/images/larry-bird.png'),
+                              widget.spellcaster != null
+                                  ? widget.spellcaster!.thumbnail
+                                  : Image.asset('assets/images/larry-bird.png'),
                               _class,
                               _level,
                               _description,
@@ -159,11 +170,12 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
             child: Stack(children: <Widget>[
               CircleAvatar(
                 radius: 100.0,
-                backgroundImage: spellcaster != null
-                    ? spellcaster.thumbnail.image // comming from edit
-                    : usePickedImage
-                        ? Image.file(image).image // searched
-                        : Image.asset('assets/images/larry-bird.png').image, // deafult
+                backgroundImage: usePickedImage
+                    ? Image.file(image).image
+                    : widget.spellcaster != null
+                        ? widget.spellcaster!.thumbnail.image
+                        : Image.asset('assets/images/larry-bird.png')
+                            .image,
               ),
               Positioned(
                 bottom: 0.0,
@@ -200,7 +212,7 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: OutlineBorderInputField(
-                initialText: spellcaster?.name,
+                initialText: _name,
                 labelText: 'Name',
                 icon: CommunityMaterialIcons.cupcake,
                 controller: nameTextController,
@@ -226,8 +238,7 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                 width: 200,
                 child: ScrollPicker(
                   items: dndClasses,
-                  selectedItem:
-                      spellcaster != null ? spellcaster.dndClass : 'Warlock',
+                  selectedItem: _class,
                   onChanged: (String value) {
                     setState(() {
                       _class = value;
@@ -241,7 +252,7 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                 width: 100,
                 child: ScrollPicker(
                   items: dndLevels,
-                  selectedItem: spellcaster != null ? spellcaster.level : 3,
+                  selectedItem: _level,
                   onChanged: (int value) {
                     setState(() {
                       _level = value;
@@ -277,9 +288,10 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
               ),
             ),
             onPressed: () {
-              if (spellcaster != null) {
+              if (widget.spellcaster != null) {
                 setState(() {
-                  descriptionTextController.text = spellcaster.description;
+                  descriptionTextController.text =
+                      widget.spellcaster!.description;
                 });
               }
               String originalDescription = descriptionTextController.text;
@@ -323,12 +335,6 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                                   decoration: const InputDecoration(
                                     hintText: "Fireball enthusiast 🔥🔥🔥",
                                     border: InputBorder.none,
-                                    // focusedBorder: OutlineInputBorder(
-                                    //   borderSide: BorderSide(
-                                    //     color: Color.fromARGB(212, 146, 84, 200),
-                                    //     width: 2,
-                                    //   ),
-                                    // ),
                                   ),
                                 ),
                               ),
