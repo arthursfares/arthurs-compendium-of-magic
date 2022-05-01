@@ -4,5 +4,5 @@
     </a>
 </p>
 <p align="center">
-    click here to watch demonstration
+    click to watch demonstration
 </p>
