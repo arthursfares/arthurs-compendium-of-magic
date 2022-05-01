@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class SpellcastersAddScreen extends StatefulWidget {
   const SpellcastersAddScreen({Key? key}) : super(key: key);
@@ -20,11 +21,14 @@ class SpellcastersAddScreen extends StatefulWidget {
 class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
   TextEditingController nameTextController = TextEditingController();
   TextEditingController descriptionTextController = TextEditingController();
+
+  String _name = '';
   File image = File('assets/images/larry-bird.png');
   bool usePickedImage = false;
   String _class = 'Wizard';
   int _level = 1;
   String _description = '';
+
   bool isNameEmpty = true;
 
   /// Open image gallery and pick an image
@@ -64,6 +68,9 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SpellcasterModel? spellcaster =
+        ModalRoute.of(context)?.settings.arguments as SpellcasterModel?;
+
     Size size = MediaQuery.of(context).size;
     List<int> dndLevels =
         List.generate(20, (index) => index + 1, growable: false);
@@ -93,10 +100,13 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
             disabledColor: Colors.grey,
             icon: Icon(
               Icons.check,
-              color:
-                  isNameEmpty ? null : const Color.fromARGB(212, 146, 84, 200),
+              color: spellcaster != null
+                  ? const Color.fromARGB(212, 146, 84, 200)
+                  : isNameEmpty
+                      ? null
+                      : const Color.fromARGB(212, 146, 84, 200),
             ),
-            onPressed: isNameEmpty
+            onPressed: nameTextController.text.isEmpty
                 ? () {
                     showDialog(
                       context: context,
@@ -121,14 +131,20 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                     Navigator.pop(
                       context,
                       usePickedImage
-                          ? SpellcasterModel(nameTextController.text,
-                              Image.file(image), _class, _level, _description)
-                          : SpellcasterModel(
-                              nameTextController.text,
-                              Image.asset('assets/images/larry-bird.png'),
+                          ? SpellcasterModel(
+                              _name,
+                              Image.file(image),
                               _class,
                               _level,
-                              _description),
+                              _description,
+                            )
+                          : SpellcasterModel(
+                              _name,
+                              spellcaster != null ? spellcaster.thumbnail : Image.asset('assets/images/larry-bird.png'),
+                              _class,
+                              _level,
+                              _description,
+                            ),
                     );
                   },
           ),
@@ -143,27 +159,24 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
             child: Stack(children: <Widget>[
               CircleAvatar(
                 radius: 100.0,
-                backgroundImage: usePickedImage
-                    ? Image.file(image).image
-                    : Image.asset('assets/images/larry-bird.png').image,
+                backgroundImage: spellcaster != null
+                    ? spellcaster.thumbnail.image // comming from edit
+                    : usePickedImage
+                        ? Image.file(image).image // searched
+                        : Image.asset('assets/images/larry-bird.png').image, // deafult
               ),
               Positioned(
-                bottom: 28.0,
-                right: size.width / 4 - 11.5,
+                bottom: 0.0,
+                right: 0.0,
                 child: InkWell(
                   onTap: () async {
-                    // Step #1: Pick Image From Gallery.
                     await pickImageFromGallery().then((pickedFile) async {
-                      // Step #2: Check if we actually picked an image. Otherwise -> stop;
                       if (pickedFile == null) return;
 
-                      // Step #3: Crop earlier selected image
                       await cropSelectedImage(pickedFile.path)
                           .then((croppedFile) {
-                        // Step #4: Check if we actually cropped an image. Otherwise -> stop;
                         if (croppedFile == null) return;
 
-                        // Step #5: Display image on screen
                         setState(() {
                           image = croppedFile;
                           usePickedImage = true;
@@ -172,7 +185,6 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                     });
                   },
                   child: const Icon(
-                    // CommunityMaterialIcons.crystal_ball,
                     CommunityMaterialIcons.image_search,
                     color: Color.fromARGB(212, 146, 84, 200),
                     size: 33.0,
@@ -188,6 +200,7 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: OutlineBorderInputField(
+                initialText: spellcaster?.name,
                 labelText: 'Name',
                 icon: CommunityMaterialIcons.cupcake,
                 controller: nameTextController,
@@ -195,6 +208,7 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                   setState(() {
                     isNameEmpty =
                         nameTextController.text.isEmpty ? true : false;
+                    _name = nameTextController.text;
                   });
                 },
               ),
@@ -212,7 +226,8 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                 width: 200,
                 child: ScrollPicker(
                   items: dndClasses,
-                  selectedItem: 'Warlock',
+                  selectedItem:
+                      spellcaster != null ? spellcaster.dndClass : 'Warlock',
                   onChanged: (String value) {
                     setState(() {
                       _class = value;
@@ -226,7 +241,7 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                 width: 100,
                 child: ScrollPicker(
                   items: dndLevels,
-                  selectedItem: 3,
+                  selectedItem: spellcaster != null ? spellcaster.level : 3,
                   onChanged: (int value) {
                     setState(() {
                       _level = value;
@@ -262,6 +277,11 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
               ),
             ),
             onPressed: () {
+              if (spellcaster != null) {
+                setState(() {
+                  descriptionTextController.text = spellcaster.description;
+                });
+              }
               String originalDescription = descriptionTextController.text;
 
               showDialog(
