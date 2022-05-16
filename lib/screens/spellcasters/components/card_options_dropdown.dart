@@ -91,7 +91,7 @@ class CardOptionsDropdown extends StatelessWidget {
                   backgroundColor: const Color(0xFF161616),
                   title: const Text('Confirmation'),
                   content: const Text(
-                      'Your about to delete a beloved character with unique magical knowlege and personal histories. \n\nAre you shure you want to continue?'),
+                      'Your about to delete a beloved character with unique magical knowlege and personal histories. \n\nAre you sure you want to continue?'),
                   actions: <Widget>[
                     TextButton(
                       child: Text(
