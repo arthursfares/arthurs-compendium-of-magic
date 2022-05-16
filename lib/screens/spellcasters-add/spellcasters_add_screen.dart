@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:arthurs_compendium_of_magic/models/spellcaster_model.dart';
@@ -122,8 +123,8 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                       builder: (BuildContext context) {
                         return BackdropFilter(
                           filter: ImageFilter.blur(
-                            sigmaX: 4,
-                            sigmaY: 4,
+                            sigmaX: max(0.001, 4.0),
+                            sigmaY: max(0.001, 4.0),
                           ),
                           child: AlertDialog(
                             backgroundColor: Colors.redAccent.shade200,

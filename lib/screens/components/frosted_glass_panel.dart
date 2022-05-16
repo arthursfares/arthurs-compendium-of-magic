@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -15,7 +16,10 @@ class FrostedGlassPanel extends StatelessWidget {
     return Center(
       child: ClipRect(
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),
+          filter: ImageFilter.blur(
+            sigmaX: max(0.001, 20.0),
+            sigmaY: max(0.001, 20.0),
+          ),
           child: Container(
             // width: size.width * 0.9,
             // height: size.height * 0.60,

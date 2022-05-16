@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:arthurs_compendium_of_magic/models/spellcaster_list_model.dart';
@@ -23,7 +24,7 @@ class CardOptionsDropdown extends StatelessWidget {
       return PopupMenuButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         color: const Color(0xFF161616),
-        icon: const Icon(CommunityMaterialIcons.dots_horizontal, size: 33,),
+        icon: const Icon(CommunityMaterialIcons.dots_horizontal,),
         itemBuilder: (context) {
           return [
             PopupMenuItem<int>(
@@ -31,8 +32,8 @@ class CardOptionsDropdown extends StatelessWidget {
               child: BackdropFilter(
                 blendMode: BlendMode.src,
                 filter: ImageFilter.blur(
-                  sigmaX: 4,
-                  sigmaY: 4,
+                  sigmaX: max(0.001, 4.0),
+                  sigmaY: max(0.001, 4.0),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,8 +85,8 @@ class CardOptionsDropdown extends StatelessWidget {
               builder: (BuildContext context) => BackdropFilter(
                 blendMode: BlendMode.src,
                 filter: ImageFilter.blur(
-                  sigmaX: 8,
-                  sigmaY: 8,
+                  sigmaX: max(0.001, 8.0),
+                  sigmaY: max(0.001, 8.0),
                 ),
                 child: AlertDialog(
                   backgroundColor: const Color(0xFF161616),
