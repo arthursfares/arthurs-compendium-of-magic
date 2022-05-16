@@ -71,10 +71,6 @@ class LoginBackground extends StatelessWidget {
               ),
             ),
           ),
-          // BackdropFilter(
-          //   filter: ImageFilter.blur(sigmaX: 13, sigmaY: 13),
-          //   child: child,
-          // ),
           child,
         ],
       ),

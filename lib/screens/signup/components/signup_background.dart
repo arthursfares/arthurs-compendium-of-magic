@@ -71,10 +71,6 @@ class SignupBackground extends StatelessWidget {
               ),
             ),
           ),
-          // BackdropFilter(
-          //   filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-          //   child: child,
-          // ),
           child,
         ],
       ),
