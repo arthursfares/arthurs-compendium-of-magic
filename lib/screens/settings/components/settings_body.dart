@@ -1,4 +1,5 @@
 import 'package:arthurs_compendium_of_magic/screens/settings/components/logout_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SettingsBody extends StatelessWidget {
@@ -39,6 +40,7 @@ class SettingsBody extends StatelessWidget {
           child: LogoutButton(
             text: 'Log out',
             press: () {
+              FirebaseAuth.instance.signOut();
               Navigator.pushReplacementNamed(context, 'login');
             },
           ),
