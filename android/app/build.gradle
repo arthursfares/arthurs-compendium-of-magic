@@ -69,7 +69,9 @@ dependencies {
 
     // Import the Firebase BoM
     implementation platform('com.google.firebase:firebase-bom:29.3.1')
-
     // Add the dependencies for the desired Firebase products
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.google.firebase:firebase-storage'
     // https://firebase.google.com/docs/android/setup#available-libraries
 }
