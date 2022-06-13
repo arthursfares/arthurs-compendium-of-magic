@@ -1,21 +1,19 @@
-import 'package:flutter/material.dart';
-
 class SpellcasterModel {
   late String _name;
-  late Image _thumbnail;
+  late String _imageName;
   late String _dndClass;
   late int _level;
   late String _description;
 
   SpellcasterModel(
     String spellcasterName,
-    Image spellcasterThumbnail,
+    String imageName,
     String spellcasterClass,
     int spellcasterLevel,
     String spellcasterDescription,
   ) {
     _name = spellcasterName;
-    _thumbnail = spellcasterThumbnail;
+    _imageName = imageName;
     _dndClass = spellcasterClass;
     _level = spellcasterLevel;
     _description = spellcasterDescription;
@@ -24,7 +22,7 @@ class SpellcasterModel {
   factory SpellcasterModel.fromJson(Map<String, dynamic> json) {
     return SpellcasterModel(
       json['name'],
-      json['thumbnail'],
+      json['imageName'],
       json['class'],
       json['level'],
       json['description'],
@@ -33,14 +31,14 @@ class SpellcasterModel {
 
   Map<String, dynamic> toJson() => {
     'name': _name,
-    'thumbnail': _thumbnail,
+    'imageName': _imageName,
     'class': _dndClass,
     'level': _level,
     'description': _description,
   };
 
   String      get name          => _name;
-  Image       get thumbnail     => _thumbnail;
+  String      get imageName     => _imageName;
   String      get dndClass      => _dndClass;
   int         get level         => _level;
   String      get description   => _description;

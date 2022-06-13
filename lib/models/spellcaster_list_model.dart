@@ -5,21 +5,21 @@ class SpellcasterListModel extends ChangeNotifier {
   final List<SpellcasterModel> _spellcasters = <SpellcasterModel>[
     SpellcasterModel(
       'Nick Cage',
-      Image.asset('assets/images/nic-cage.png'),
+      'nic_cage.png',
       'Bard',
       11,
       '"I\'m going to steal the Declaration of Independence"',
     ),
     SpellcasterModel(
       'John Carmack',
-      Image.asset('assets/images/john-carmack.png'),
+      'john_carmack.png',
       'Wizard',
       19,
       'Time traveling interdimensional over genius and actual rocket scientist',
     ),
     SpellcasterModel(
       'Larry Bird',
-      Image.asset('assets/images/larry-bird.png'),
+      'larry_bird.png',
       'Warlock',
       13,
       '🏀🍀🩳',
