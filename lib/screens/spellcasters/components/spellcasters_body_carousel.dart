@@ -1,8 +1,10 @@
 import 'package:arthurs_compendium_of_magic/models/spellcaster_list_model.dart';
 import 'package:arthurs_compendium_of_magic/screens/spellcasters/components/card_options_dropdown.dart';
+import 'package:arthurs_compendium_of_magic/services/storage_service.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shimmer/shimmer.dart';
 
 class SpellcastersBodyCarousel extends StatelessWidget {
   const SpellcastersBodyCarousel({
@@ -15,6 +17,7 @@ class SpellcastersBodyCarousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final Storage storage = Storage();
 
     return Center(
       child: CarouselSlider(
@@ -53,16 +56,40 @@ class SpellcastersBodyCarousel extends StatelessWidget {
                     // CARD CONTENT
                     Column(
                       children: [
+
                         // THUMBNAIL
-                        Container(
-                          alignment: FractionalOffset.topCenter,
-                          child: ClipOval(
-                            child: Image(
-                              width: 200.0,
-                              height: 200.0,
-                              image: spellcaster.thumbnail.image,
-                            ),
-                          ),
+                        FutureBuilder(
+                          future: storage.downloadUrl(spellcaster.imageName),
+                          builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                            if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+                              return Container(
+                                alignment: FractionalOffset.topCenter,
+                                child: ClipOval(
+                                  child: Image.network(
+                                    snapshot.data!,
+                                    width: 200.0,
+                                    height: 200.0,
+                                  ),
+                                ),
+                              );
+                            }
+                            if (snapshot.connectionState == ConnectionState.waiting || !snapshot.hasData) {
+                              return Shimmer.fromColors(
+                                baseColor: Colors.purple,
+                                highlightColor: Colors.purpleAccent,
+                                child: Container(
+                                  width: 200.0,
+                                  height: 200.0,
+                                  alignment: FractionalOffset.topCenter,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.purple,
+                                    shape: BoxShape.circle,
+                                  ),
+                                ),
+                              );
+                            }
+                            return const Text('image not found');
+                          },
                         ),
 
                         // NAME
@@ -194,7 +221,8 @@ class SpellcastersBodyCarousel extends StatelessWidget {
                       // padding: const EdgeInsets.only(right: 8.0),
                       alignment: Alignment.topRight,
                       child: CardOptionsDropdown(
-                        index: spellcasterList.spellcasters.indexOf(spellcaster),
+                        index:
+                            spellcasterList.spellcasters.indexOf(spellcaster),
                       ),
                     ),
                   ],

@@ -5,11 +5,13 @@ import 'dart:ui';
 import 'package:arthurs_compendium_of_magic/models/spellcaster_model.dart';
 import 'package:arthurs_compendium_of_magic/screens/components/outline_border_input_field.dart';
 import 'package:arthurs_compendium_of_magic/screens/spellcasters-add/components/custom_scroll_picker.dart';
+import 'package:arthurs_compendium_of_magic/services/storage_service.dart';
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shimmer/shimmer.dart';
 
 class SpellcastersAddScreen extends StatefulWidget {
   const SpellcastersAddScreen({
@@ -28,7 +30,8 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
   TextEditingController descriptionTextController = TextEditingController();
 
   String _name = '';
-  File image = File('assets/images/ice-bear.jpg');
+  String _imageName = 'ice_bear.jpg';
+  File pickedImage = File('assets/images/ice_bear.jpg');
   bool usePickedImage = false;
   String _class = 'Warlock';
   int _level = 3;
@@ -61,7 +64,7 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
   @override
   void initState() {
     super.initState();
-    image = File('assets/images/ice-bear.jpg');
+    _imageName = 'ice_bear.jpg';
 
     if (widget.spellcaster != null) {
       _name = widget.spellcaster!.name;
@@ -82,8 +85,8 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    List<int> dndLevels =
-        List.generate(20, (index) => index + 1, growable: false);
+    Storage storage = Storage();
+    List<int> dndLevels = List.generate(20, (index) => index + 1, growable: false);
     List<String> dndClasses = [
       'Wizard',
       'Warlock',
@@ -143,7 +146,7 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                       usePickedImage
                           ? SpellcasterModel(
                               _name,
-                              Image.file(image),
+                              _imageName,
                               _class,
                               _level,
                               _description,
@@ -151,8 +154,8 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                           : SpellcasterModel(
                               _name,
                               widget.spellcaster != null
-                                  ? widget.spellcaster!.thumbnail
-                                  : Image.asset('assets/images/ice-bear.jpg'),
+                                  ? widget.spellcaster!.imageName
+                                  : 'ice_bear.jpg',
                               _class,
                               _level,
                               _description,
@@ -170,15 +173,34 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
           // THUMBNAIL
           Center(
             child: Stack(children: <Widget>[
-              CircleAvatar(
-                radius: 100.0,
-                backgroundImage: usePickedImage
-                    ? Image.file(image).image
-                    : widget.spellcaster != null
-                        ? widget.spellcaster!.thumbnail.image
-                        : Image.asset('assets/images/ice-bear.jpg')
-                            .image,
-              ),
+              usePickedImage 
+              ? CircleAvatar(radius: 100.0, backgroundImage: Image.file(pickedImage).image)
+              : widget.spellcaster != null
+                ? FutureBuilder(
+                  future: storage.downloadUrl(widget.spellcaster!.imageName),
+                  builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+                      return CircleAvatar(radius: 100, backgroundImage: Image.network(snapshot.data!).image);
+                    }
+                    if (snapshot.connectionState == ConnectionState.waiting || !snapshot.hasData) {
+                      return Shimmer.fromColors(
+                        baseColor: Colors.purple,
+                        highlightColor: Colors.purpleAccent,
+                        child: const CircleAvatar(radius: 100, child: SizedBox(height: 100, width: 100)),
+                      );
+                    }
+                    return const Text('image not found');
+                  },
+                )
+                : CircleAvatar(radius: 100.0, backgroundImage: Image.asset('assets/images/ice-bear.jpg').image),
+              // CircleAvatar(
+              //   radius: 100.0,
+              //   backgroundImage: usePickedImage
+              //       ? Image.file(pickedImage).image
+              //       : widget.spellcaster != null
+              //           ? widget.spellcaster!.thumbnail.image
+              //           : Image.asset('assets/images/ice-bear.jpg').image,
+              // ),
               Positioned(
                 bottom: 0.0,
                 right: 0.0,
@@ -192,7 +214,8 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                         if (croppedFile == null) return;
 
                         setState(() {
-                          image = croppedFile;
+                          pickedImage = croppedFile;
+                          _imageName = pickedFile.name;
                           usePickedImage = true;
                         });
                       });
