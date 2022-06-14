@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class SpellcasterModel {
   late String _name;
   late String _imageName;
@@ -26,6 +28,16 @@ class SpellcasterModel {
       json['class'],
       json['level'],
       json['description'],
+    );
+  }
+
+  factory SpellcasterModel.fromDoc(QueryDocumentSnapshot<Object?> doc){
+    return SpellcasterModel(
+      doc['name'],
+      doc['imageName'],
+      doc['dndClass'],
+      doc['level'],
+      doc['description'],
     );
   }
 
