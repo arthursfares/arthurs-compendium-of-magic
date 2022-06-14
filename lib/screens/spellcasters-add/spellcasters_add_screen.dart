@@ -192,14 +192,14 @@ class _SpellcastersAddScreenState extends State<SpellcastersAddScreen> {
                     return const Text('image not found');
                   },
                 )
-                : CircleAvatar(radius: 100.0, backgroundImage: Image.asset('assets/images/ice-bear.jpg').image),
+                : CircleAvatar(radius: 100.0, backgroundImage: Image.asset('assets/images/ice_bear.jpg').image),
               // CircleAvatar(
               //   radius: 100.0,
               //   backgroundImage: usePickedImage
               //       ? Image.file(pickedImage).image
               //       : widget.spellcaster != null
               //           ? widget.spellcaster!.thumbnail.image
-              //           : Image.asset('assets/images/ice-bear.jpg').image,
+              //           : Image.asset('assets/images/ice_bear.jpg').image,
               // ),
               Positioned(
                 bottom: 0.0,
